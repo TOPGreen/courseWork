@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <div>
+    My App
+  </div>
+  <div *ngIf="!authService.authStatus">
+    <a [routerLink]="'login'" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">Вход</a>
+  </div>
+  <div *ngIf="!authService.authStatus">
+    <a [routerLink]="'/registration'" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">Регистрация</a>
+  </div>
+  <div *ngIf="authService.authStatus">
+    <a [routerLink]="'/films'" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">Фильмы</a>
+  </div>
+  <div *ngIf="authService.authStatus">
+    <a [routerLink]="'/'" (click)="logOut()">Выйти</a>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,32 @@
+<div class="form-container">
+  <form class="example-form" [formGroup]="regForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите Email</mat-label>
+        <input formControlName="email" matInput placeholder="Placeholder">
+        <mat-error *ngIf="regForm.get('email').hasError('email') &&
+        !regForm.get('email').hasError('required')">
+          Введите корректный email
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Введите пароль</mat-label>
+        <input formControlName="password" matInput [type]="'password'">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Повторите пароль</mat-label>
+        <input formControlName="confirmedPassword" matInput [type]="'password'">
+        <mat-hint *ngIf="regForm.get('password').value !== regForm.get('confirmedPassword').value">
+          Пароли должны совпадать
+        </mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Зарегистрироваться</button>
+    <mat-error class="error">{{errorMessage}}</mat-error>
+  </form>
+</div>
+

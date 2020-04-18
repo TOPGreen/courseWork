@@ -1,0 +1,27 @@
+.form-container {
+  display: flex;
+  height: 50%
+}
+
+form {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  padding: 10px;
+  border: 2px solid #3d50b6;
+  border-radius: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin: 5px;
+}
+
+mat-hint {
+  color: red;
+}
