@@ -1,20 +1,9 @@
-<mat-toolbar>
-  <div>
-    My App
-  </div>
-  <div *ngIf="!authService.authStatus">
-    <a [routerLink]="'login'" routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">Вход</a>
-  </div>
-  <div *ngIf="!authService.authStatus">
-    <a [routerLink]="'/registration'" routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">Регистрация</a>
-  </div>
-  <div *ngIf="authService.authStatus">
-    <a [routerLink]="'/films'" routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">Фильмы</a>
-  </div>
-  <div *ngIf="authService.authStatus">
-    <a [routerLink]="'/'" (click)="logOut()">Выйти</a>
-  </div>
-</mat-toolbar>
+<nav mat-tab-nav-bar>
+  <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'login'" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">Вход</a>
+  <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'/registration'" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">Регистрация</a>
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films'" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">Фильмы</a>
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/'" (click)="logOut()">Выйти</a>
+</nav>

@@ -24,6 +24,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FilmsComponent} from './components/films/films.component';
 import {AuthGuard} from "./guards/auth.guard";
 import { FilmCardComponent } from './components/film-card/film-card.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 const MAT_MODULES = [
   MatToolbarModule,
@@ -32,7 +33,8 @@ const MAT_MODULES = [
   MatFormFieldModule,
   MatIconModule,
   MatButtonModule,
-  MatCardModule
+  MatCardModule,
+  MatTabsModule,
 ];
 
 @NgModule({
@@ -44,19 +46,18 @@ const MAT_MODULES = [
     FilmsComponent,
     FilmCardComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-
-    ...MAT_MODULES,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        ...MAT_MODULES,
+    ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })

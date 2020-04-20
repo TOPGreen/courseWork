@@ -16,6 +16,7 @@ export class FilmsService {
   }
 
   search(searchString: string) {
+    console.log(searchString)
     this.omdbService.search(searchString).subscribe(data => {
       this.setFilms(data['Search'])
     })
