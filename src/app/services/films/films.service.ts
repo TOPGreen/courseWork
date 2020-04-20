@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {OmdbService} from "../omdbApi/omdb.service";
+import {Film} from "../../interfaces/film";
+import {map, mergeAll, mergeMap} from "rxjs/operators";
+import {combineLatest, from, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +19,24 @@ export class FilmsService {
   }
 
   search(searchString: string) {
-    console.log(searchString)
-    this.omdbService.search(searchString).subscribe(data => {
-      this.setFilms(data['Search'])
-    })
+    this.setFilms([]);
+    this.omdbService.search(searchString)
+      .subscribe(data => {
+        from(data['Search'])
+          .pipe(
+            mergeMap((film: any) => this.omdbService.getInfo(film.imdbID))
+          ).subscribe(film => {
+          this.addFilm(film)
+        })
+      })
   }
 
   setFilms(films) {
     this.films = films;
+  }
+
+  addFilm(film) {
+    this.films.push(film);
   }
 
 }

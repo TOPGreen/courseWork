@@ -1,10 +1,10 @@
-<div class="flex justify-content-center">
- <form [formGroup]="searchForm" class="example-form">
-   <mat-form-field class="example-full-width">
-     <mat-label>Search film</mat-label>
-     <input formControlName="search" matInput placeholder="Ex. Pizza" value="Sushi">
-   </mat-form-field>
- </form>
-</div>
+<form [formGroup]="searchForm" class="flex justify-content-center">
+  <mat-form-field>
+    <mat-label>Search film</mat-label>
+    <input formControlName="search" matInput placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field>
+</form>
 
- <h1>Success</h1>
+<div class="d-flex flex-wrap">
+  <app-film-card class="col col-3 mb-1" *ngFor="let film of films" [film]="film"></app-film-card>
+</div>
