@@ -1,9 +1,9 @@
 <nav mat-tab-nav-bar>
   <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'login'" routerLinkActive="active"
-     [routerLinkActiveOptions]="{ exact: true }">Вход</a>
+     [routerLinkActiveOptions]="{ exact: true }">Log in</a>
   <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'/registration'" routerLinkActive="active"
-     [routerLinkActiveOptions]="{ exact: true }">Регистрация</a>
+     [routerLinkActiveOptions]="{ exact: true }">Registration</a>
   <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films'" routerLinkActive="active"
-     [routerLinkActiveOptions]="{ exact: true }">Фильмы</a>
-  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/'" (click)="logOut()">Выйти</a>
+     [routerLinkActiveOptions]="{ exact: true }">Films</a>
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/'" (click)="logOut()">Log out</a>
 </nav>

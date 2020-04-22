@@ -1,6 +1,17 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>{{film.Title}}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image [src]="film.Poster">
-</mat-card>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <a [routerLink]="['/info', film.id]"><img class="" src={{film.Poster}} alt="Card image"></a>
+    </div>
+    <div class="flip-card-back d-flex flex-column justify-content-center p-2">
+      <h3 class="card-title font-weight-bold">{{film.Title}}</h3>
+      <div class="text-left">
+        <p class="card-text"><b>Genre :</b>{{film.Genre}}</p>
+        <p><b>Director :</b> {{film.Director}}</p>
+        <p><b>Actors :</b> {{film.Actors}}</p>
+        <p><b>Production :</b> {{film.Production}}</p>
+        <p><b>Year</b> {{film.Year}}</p>
+      </div>
+    </div>
+  </div>
+</div>

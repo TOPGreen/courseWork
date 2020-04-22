@@ -2,30 +2,30 @@
   <form class="example-form" [formGroup]="regForm">
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Введите Email</mat-label>
+        <mat-label>Enter Email</mat-label>
         <input formControlName="email" matInput placeholder="Placeholder">
         <mat-error *ngIf="regForm.get('email').hasError('email') &&
         !regForm.get('email').hasError('required')">
-          Введите корректный email
+          Enter existing email address
         </mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Введите пароль</mat-label>
+        <mat-label>Enter password</mat-label>
         <input formControlName="password" matInput [type]="'password'">
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Повторите пароль</mat-label>
+        <mat-label>Confirm password</mat-label>
         <input formControlName="confirmedPassword" matInput [type]="'password'">
         <mat-hint *ngIf="regForm.get('password').value !== regForm.get('confirmedPassword').value">
-          Пароли должны совпадать
+          Passwords must match
         </mat-hint>
       </mat-form-field>
     </p>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Зарегистрироваться</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Registration</button>
     <mat-error class="error">{{errorMessage}}</mat-error>
   </form>
 </div>
