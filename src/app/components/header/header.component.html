@@ -5,5 +5,9 @@
      [routerLinkActiveOptions]="{ exact: true }">Registration</a>
   <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">Films</a>
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/wish'" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">Wishlist</a>
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/watched'" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">WatchedList</a>
   <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/'" (click)="logOut()">Log out</a>
 </nav>

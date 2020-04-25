@@ -9,8 +9,13 @@ export class FirebaseService {
   constructor(private firestore: AngularFirestore) {
   }
 
-  public addData(collection, data) {
-    this.firestore.collection(collection).add(data)
+  public addData(doc, collection, data) {
+    console.log(data);
+    if (!doc) {
+      this.firestore.collection(collection).add(data)
+    } else {
+      this.firestore.collection(collection).ref.doc(doc.id).set(data);
+    }
   }
 
   public getData(collection) {
@@ -48,5 +53,21 @@ export class FirebaseService {
     });
 
     return doc;
+  }
+
+  getUsersWishList(userId: string) {
+    // const citiesRef = this.firestore.collection("cities").ref;
+    // const query = citiesRef.where("userId", "==", userId);
+    // let outputDoc;
+    return this.firestore.collection('wishlist').ref.where("userId", "==", userId)
+      .get();
+    // .then(function (querySnapshot) {
+    //   querySnapshot.forEach(function (doc) {
+    //     // doc.data() is never undefined for query doc snapshots
+    //     console.log(doc.id, " => ", doc.data());
+    //     outputDoc = doc;
+    //   });
+    //   outputDoc;
+    // })
   }
 }

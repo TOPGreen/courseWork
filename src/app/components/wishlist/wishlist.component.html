@@ -11,7 +11,7 @@
     </div>
     <app-film-info></app-film-info>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="h-100">
     <div class="d-flex flex-wrap films">
       <app-film-card *ngFor="let film of films" [film]="film" (click)="drawer.open()"></app-film-card>
     </div>

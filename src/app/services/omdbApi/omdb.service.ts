@@ -20,8 +20,7 @@ export class OmdbService {
   }
 
   getInfo(id: string) {
-    return this.httpClient.get(`${url}&i=${id}`);
-
+    return this.httpClient.get(`${url}&plot=full&i=${id}`);
   }
 
 }

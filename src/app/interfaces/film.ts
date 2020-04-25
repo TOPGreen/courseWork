@@ -1,6 +1,12 @@
 export interface Film {
-  title: string,
-  poster: string,
-  genre: string,
-  year: string
+  imdbID:string,
+  Title: string,
+  Poster: string,
+  Genre: string,
+  Year: string,
+  Director: string,
+  Actors: string,
+  Production: string,
+  Plot:string,
+  Ratings:[],
 }

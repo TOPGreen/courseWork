@@ -1,0 +1,15 @@
+<div class="flip-card-back d-flex flex-column justify-content-center p-2">
+  <h3 class="card-title text-center font-weight-bold">{{currentFilm.Title}}</h3>
+  <div class="text-left">
+    <p class="card-text"><b>Genre :</b>{{currentFilm.Genre}}</p>
+    <p><b>Director :</b> {{currentFilm.Director}}</p>
+    <p><b>Actors :</b> {{currentFilm.Actors}}</p>
+    <p><b>Production :</b> {{currentFilm.Production}}</p>
+    <p><b>Year</b> {{currentFilm.Year}}</p>
+    <p>{{currentFilm.Plot}}</p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <button mat-raised-button color="primary" (click)="addToWishList()">Add to wishlist</button>
+    <button mat-raised-button color="primary">Add to wachedlist</button>
+  </div>
+</div>

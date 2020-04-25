@@ -38,6 +38,7 @@ export class AuthService {
         .then(res => {
           this.user = res.user;
           this.isAuth = true
+          console.log(this.user);
           resolve(res);
         }, err => reject(err));
     })
@@ -49,6 +50,7 @@ export class AuthService {
         .then(res => {
           resolve(res);
           this.isAuth = false;
+          this.user = null;
         }, err => reject(err));
     })
   }

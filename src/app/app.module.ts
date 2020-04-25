@@ -25,6 +25,11 @@ import {FilmsComponent} from './components/films/films.component';
 import {AuthGuard} from "./guards/auth.guard";
 import { FilmCardComponent } from './components/film-card/film-card.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { FilmInfoComponent } from './components/film-info/film-info.component';
+import {MatRippleModule} from '@angular/material/core';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { WachedListComponent } from './components/wached-list/wached-list.component';
 
 const MAT_MODULES = [
   MatToolbarModule,
@@ -35,6 +40,8 @@ const MAT_MODULES = [
   MatButtonModule,
   MatCardModule,
   MatTabsModule,
+  MatSidenavModule,
+  MatRippleModule,
 ];
 
 @NgModule({
@@ -44,7 +51,10 @@ const MAT_MODULES = [
     LoginComponent,
     RegistrationComponent,
     FilmsComponent,
-    FilmCardComponent
+    FilmCardComponent,
+    FilmInfoComponent,
+    WishlistComponent,
+    WachedListComponent
   ],
     imports: [
         BrowserModule,

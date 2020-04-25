@@ -44,4 +44,7 @@ export class FilmsComponent implements OnInit {
   async searchFilm(searchString: string) {
     this.filmsService.search(searchString);
   }
+
+  toggleFilmInfo(){
+  }
 }

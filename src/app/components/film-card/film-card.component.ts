@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Film} from "../../interfaces/film";
+import {FilmsService} from "../../services/films/films.service";
 
 @Component({
   selector: 'app-film-card',
@@ -9,12 +10,16 @@ import {Film} from "../../interfaces/film";
 export class FilmCardComponent implements OnInit {
 
   @Input()
-  film;
+  film: Film;
 
-  constructor() {
+  constructor(private filmsService: FilmsService) {
   }
 
   ngOnInit(): void {
+  }
+
+  setCurrentFilm() {
+    this.filmsService.setCurrentFilm(this.film);
   }
 
 }

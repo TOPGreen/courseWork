@@ -10,9 +10,29 @@ import {combineLatest, from, of} from "rxjs";
 export class FilmsService {
 
   private films = [];
+  private currentFilm: Film = {
+    imdbID:"string",
+    Title: "string",
+    Poster: "string",
+    Genre: "string",
+    Year: "string",
+    Director: "string",
+    Actors: "string",
+    Production: "string",
+    Plot:"string",
+    Ratings:[],
+  };
 
   get getFilms() {
     return this.films;
+  }
+
+  get getCurrentFilm() {
+    return this.currentFilm;
+  }
+
+  setCurrentFilm(film: Film) {
+    this.currentFilm = film;
   }
 
   constructor(private omdbService: OmdbService) {
