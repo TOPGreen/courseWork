@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {fromEvent} from "rxjs";
+import {fromEvent, Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
+import {FilmDTO} from "../../interfaces/filmDTO";
 
 @Component({
   selector: 'app-films',
@@ -11,15 +12,15 @@ import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 })
 export class FilmsComponent implements OnInit {
 
-  get films() {
-    return this.filmsService.getFilms
-  };
-
   data = {};
   searchForm: FormGroup;
   searchControl;
+  films: Observable<FilmDTO[]>
 
   constructor(private filmsService: FilmsService) {
+  }
+
+  ngOnInit(): void {
     this.searchForm = new FormGroup({
       'search': new FormControl(null, [])
     });
@@ -35,16 +36,10 @@ export class FilmsComponent implements OnInit {
           this.searchFilm(value)
         }
       )
-
   }
 
-  ngOnInit(): void {
+  searchFilm(searchString: string): void {
+    this.films = this.filmsService.search(searchString);
   }
 
-  async searchFilm(searchString: string) {
-    this.filmsService.search(searchString);
-  }
-
-  toggleFilmInfo(){
-  }
 }

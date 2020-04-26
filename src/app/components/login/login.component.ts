@@ -12,19 +12,19 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  errorMessage = '';
+  errorMessage: string = '';
 
   constructor(private firebase: FirebaseService, private authService: AuthService, private router: Router) {
+  }
+
+  ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl("test@test.ru", [Validators.required, Validators.email]),
       password: new FormControl("test123", [Validators.required]),
     })
   }
 
-  ngOnInit(): void {
-  }
-
-  async onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
       this.tryLogin(this.loginForm.value);
     } else {
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  tryLogin(value) {
+  tryLogin(value): void {
     this.authService.doLogin(value)
       .then(res => {
         this.errorMessage = "";

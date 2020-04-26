@@ -13,9 +13,12 @@ export class RegistrationComponent implements OnInit {
 
 
   regForm: FormGroup;
-  errorMessage = '';
+  errorMessage: string = '';
 
   constructor(private firebase: FirebaseService, private authService: AuthService, private router: Router) {
+  }
+
+  ngOnInit(): void {
     this.regForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
@@ -23,21 +26,16 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-  }
-
-  async onSubmit() {
-
+  onSubmit(): void {
     if (this.regForm.valid && this.regForm.value.password === this.regForm.value.confirmedPassword) {
       this.tryRegister(this.regForm.value);
     } else {
       this.errorMessage = "Некорректные данные";
     }
-
   }
 
 
-  tryRegister(value) {
+  tryRegister(value): void {
     this.authService.doRegister(value)
       .then(res => {
         this.errorMessage = "";

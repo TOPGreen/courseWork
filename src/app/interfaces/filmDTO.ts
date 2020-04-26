@@ -1,4 +1,4 @@
-export interface Film {
+export interface FilmDTO {
   imdbID:string,
   Title: string,
   Poster: string,

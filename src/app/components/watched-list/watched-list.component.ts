@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+import {WatchedListService} from "../../services/wathedList/watched-list.service";
+import {FilmDTO} from "../../interfaces/filmDTO";
 
 @Component({
   selector: 'app-wached-list',
-  templateUrl: './wached-list.component.html',
-  styleUrls: ['./wached-list.component.css']
+  templateUrl: './watched-list.component.html',
+  styleUrls: ['./watched-list.component.css']
 })
-export class WachedListComponent implements OnInit {
+export class WatchedListComponent implements OnInit {
 
-  constructor() { }
+  searchForm: FormGroup;
+
+  get films(): FilmDTO[] {
+    return this.watchedListService.getFilms;
+  }
+
+  constructor(private watchedListService: WatchedListService) {
+  }
 
   ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      'search': new FormControl(null, [])
+    });
+
+    this.watchedListService.getWatchedList();
   }
+
+
+
 
 }

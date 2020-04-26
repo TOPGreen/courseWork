@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {OmdbService} from "../omdbApi/omdb.service";
-import {Film} from "../../interfaces/film";
-import {map, mergeAll, mergeMap} from "rxjs/operators";
-import {combineLatest, from, of} from "rxjs";
+import {FilmDTO} from "../../interfaces/filmDTO";
+import {map, switchMap} from "rxjs/operators";
+import {combineLatest, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmsService {
 
-  private films = [];
-  private currentFilm: Film = {
-    imdbID:"string",
+  private films: FilmDTO[] = [];
+  private currentFilm: FilmDTO = {
+    imdbID: "string",
     Title: "string",
     Poster: "string",
     Genre: "string",
@@ -19,43 +19,38 @@ export class FilmsService {
     Director: "string",
     Actors: "string",
     Production: "string",
-    Plot:"string",
-    Ratings:[],
+    Plot: "string",
+    Ratings: [],
   };
 
-  get getFilms() {
+  get getFilms(): FilmDTO[] {
     return this.films;
   }
 
-  get getCurrentFilm() {
+  get getCurrentFilm(): FilmDTO {
     return this.currentFilm;
   }
 
-  setCurrentFilm(film: Film) {
+  setCurrentFilm(film: FilmDTO): void {
     this.currentFilm = film;
   }
 
   constructor(private omdbService: OmdbService) {
   }
 
-  search(searchString: string) {
-    this.setFilms([]);
-    this.omdbService.search(searchString)
-      .subscribe(data => {
-        from(data['Search'])
-          .pipe(
-            mergeMap((film: any) => this.omdbService.getInfo(film.imdbID))
-          ).subscribe(film => {
-          this.addFilm(film)
-        })
-      })
+  search(searchString: string): Observable<any> {
+    return this.omdbService.search(searchString)
+      .pipe(
+        map(data => data['Search']),
+        switchMap(films => combineLatest(films.map(film => this.omdbService.getInfo(film.imdbID))))
+      )
   }
 
-  setFilms(films) {
+  setFilms(films): void {
     this.films = films;
   }
 
-  addFilm(film) {
+  addFilm(film): void {
     this.films.push(film);
   }
 

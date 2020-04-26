@@ -1,12 +1,13 @@
 
-img{
+img {
   border-radius: 15px;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
+
 .flip-card {
-  padding: 10px;
+  padding: 0 5px 5px 5px;
   margin-top: 10px;
   background-color: transparent;
   width: 300px;

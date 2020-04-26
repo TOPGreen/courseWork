@@ -6,7 +6,7 @@
         <input formControlName="email" matInput placeholder="Placeholder" >
         <mat-error *ngIf="loginForm.get('email').hasError('email') &&
         !loginForm.get('email').hasError('required')">
-          Enter existing email address
+          Enter valid email address
         </mat-error>
       </mat-form-field>
     </div>

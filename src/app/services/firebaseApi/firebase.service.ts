@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/firestore";
+import {AngularFirestore, QuerySnapshot} from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class FirebaseService {
   constructor(private firestore: AngularFirestore) {
   }
 
-  public addData(doc, collection, data) {
+  public addData(collection: string, data: any, doc: any): void {
     console.log(data);
     if (!doc) {
       this.firestore.collection(collection).add(data)
@@ -18,7 +18,7 @@ export class FirebaseService {
     }
   }
 
-  public getData(collection) {
+  public getData(collection: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.firestore.collection(collection).snapshotChanges()
         .subscribe(snapshots => {
@@ -29,15 +29,15 @@ export class FirebaseService {
     //this.firestore.collection(collection).valueChanges();
   }
 
-  public updateData(collection, filmId, data) {
+  public updateData(collection: string, filmId: string, data: any): Promise<void> {
     return this.firestore.collection(collection).doc(filmId).set(data);
   }
 
-  public deleteData(collection, filmId) {
+  public deleteData(collection: string, filmId: string): Promise<void> {
     return this.firestore.collection(collection).doc(filmId).delete();
   }
 
-  public async getDocumentById(collection, id) {
+  public async getDocumentById(collection: string, id: string): Promise<any> {
     let doc;
     let data = await new Promise<any>((resolve, reject) => {
       this.firestore.collection(collection).snapshotChanges()
@@ -55,19 +55,7 @@ export class FirebaseService {
     return doc;
   }
 
-  getUsersWishList(userId: string) {
-    // const citiesRef = this.firestore.collection("cities").ref;
-    // const query = citiesRef.where("userId", "==", userId);
-    // let outputDoc;
-    return this.firestore.collection('wishlist').ref.where("userId", "==", userId)
-      .get();
-    // .then(function (querySnapshot) {
-    //   querySnapshot.forEach(function (doc) {
-    //     // doc.data() is never undefined for query doc snapshots
-    //     console.log(doc.id, " => ", doc.data());
-    //     outputDoc = doc;
-    //   });
-    //   outputDoc;
-    // })
+  getUsersList(collection: string, userId: string): Promise<QuerySnapshot<any>> {
+    return this.firestore.collection(collection).ref.where("userId", "==", userId).get();
   }
 }

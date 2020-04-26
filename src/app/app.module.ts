@@ -29,7 +29,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { FilmInfoComponent } from './components/film-info/film-info.component';
 import {MatRippleModule} from '@angular/material/core';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
-import { WachedListComponent } from './components/wached-list/wached-list.component';
+import { WatchedListComponent } from './components/watched-list/watched-list.component';
+import { MainComponent } from './components/main/main.component';
 
 const MAT_MODULES = [
   MatToolbarModule,
@@ -54,7 +55,8 @@ const MAT_MODULES = [
     FilmCardComponent,
     FilmInfoComponent,
     WishlistComponent,
-    WachedListComponent
+    WatchedListComponent,
+    MainComponent
   ],
     imports: [
         BrowserModule,

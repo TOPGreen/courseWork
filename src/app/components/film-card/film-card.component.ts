@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Film} from "../../interfaces/film";
+import {FilmDTO} from "../../interfaces/filmDTO";
 import {FilmsService} from "../../services/films/films.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {FilmsService} from "../../services/films/films.service";
 export class FilmCardComponent implements OnInit {
 
   @Input()
-  film: Film;
+  film: FilmDTO;
 
   constructor(private filmsService: FilmsService) {
   }
@@ -18,7 +18,7 @@ export class FilmCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setCurrentFilm() {
+  setCurrentFilm(): void {
     this.filmsService.setCurrentFilm(this.film);
   }
 

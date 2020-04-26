@@ -9,7 +9,17 @@
     <p>{{currentFilm.Plot}}</p>
   </div>
   <div class="d-flex justify-content-between">
-    <button mat-raised-button color="primary" (click)="addToWishList()">Add to wishlist</button>
-    <button mat-raised-button color="primary">Add to wachedlist</button>
+    <button *ngIf="currentRoute !== '/films/wish'" mat-raised-button
+            color="primary" (click)="addToWishList()">Add to wishlist
+    </button>
+    <button *ngIf="currentRoute !== '/films/watched'" mat-raised-button
+            color="primary" (click)="addToWatchedList()">Add to wachedlist
+    </button>
+    <button *ngIf="currentRoute === '/films/wish'" mat-raised-button
+            color="warn" (click)="removeFromWishList()">Remove from wishList
+    </button>
+    <button *ngIf="currentRoute === '/films/watched'" mat-raised-button
+            color="warn" (click)="removeFromWatchedList()">Remove from watchedList
+    </button>
   </div>
 </div>

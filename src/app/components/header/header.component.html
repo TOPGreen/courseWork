@@ -1,13 +1,13 @@
-<nav mat-tab-nav-bar>
+<nav mat-tab-nav-bar backgroundColor="primary">
   <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'login'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">Log in</a>
   <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'/registration'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">Registration</a>
   <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">Films</a>
-  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/wish'" routerLinkActive="active"
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films/wish'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">Wishlist</a>
-  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/watched'" routerLinkActive="active"
+  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films/watched'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">WatchedList</a>
   <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/'" (click)="logOut()">Log out</a>
 </nav>
