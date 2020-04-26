@@ -1,0 +1,19 @@
+<!--<form [formGroup]="searchForm" class="d-flex justify-content-center flex-wrap pt-10">-->
+  <mat-form-field [style.fontSize]="'18px'">
+    <mat-label>Search film</mat-label>
+    <input formControlName="search" matInput placeholder="Harry Potter">
+  </mat-form-field>
+<!--</form>-->
+<mat-sidenav-container class="example-container" [hasBackdrop]="false">
+  <mat-sidenav #drawer mode="side" class="p-2" [fixedInViewport]="true">
+    <div class="close-drawer-container">
+      <button mat-flat-button color="warn" class="float-right" (click)="drawer.close()">x</button>
+    </div>
+    <app-film-info></app-film-info>
+  </mat-sidenav>
+  <mat-sidenav-content class="h-100">
+    <div class="d-flex flex-wrap films">
+<!--      <app-film-card *ngFor="let film of films" [film]="film" (click)="drawer.open()"></app-film-card>-->
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
