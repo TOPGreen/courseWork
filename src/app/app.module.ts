@@ -31,6 +31,7 @@ import {MatRippleModule} from '@angular/material/core';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { WatchedListComponent } from './components/watched-list/watched-list.component';
 import { MainComponent } from './components/main/main.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const MAT_MODULES = [
   MatToolbarModule,
@@ -43,6 +44,7 @@ const MAT_MODULES = [
   MatTabsModule,
   MatSidenavModule,
   MatRippleModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

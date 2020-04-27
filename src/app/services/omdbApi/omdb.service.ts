@@ -12,11 +12,11 @@ export class OmdbService {
   constructor(private httpClient: HttpClient) {
   }
 
-  search(searchString: string): Observable<FilmDTO[]> {
-    return this.httpClient.get<FilmDTO[]>(`${OMDB_URL}&s=${searchString.toLocaleLowerCase()}`);
+  search(searchString: string, page: number): Observable<FilmDTO[]> {
+    return this.httpClient.get<FilmDTO[]>(`${OMDB_URL}&s=${searchString.toLocaleLowerCase()}&page=${page}`);
   }
 
-  getInfo(id: string):Observable<FilmDTO> {
+  getInfo(id: string): Observable<FilmDTO> {
     return this.httpClient.get<FilmDTO>(`${OMDB_URL}&plot=full&i=${id}`);
   }
 

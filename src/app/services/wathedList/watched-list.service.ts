@@ -21,17 +21,13 @@ export class WatchedListService {
     this.films = films;
   }
 
-  constructor(private firebaseService: FirebaseService, private authService: AuthService,
-              private wishListService: WishlistService) {
+  constructor(private firebaseService: FirebaseService, private authService: AuthService) {
+    this.getWatchedList();
   }
 
   addFilm(film: FilmDTO): void {
     if (this.getFilms.some(el => el.imdbID === film.imdbID)) {
       alert("The film has already been added to the watchedList");
-      return;
-    }
-    if (this.wishListService.getFilms.some(el => el.imdbID === film.imdbID)) {
-      alert("The film has already been added to the wishList");
       return;
     }
 

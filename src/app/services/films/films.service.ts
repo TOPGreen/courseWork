@@ -9,7 +9,7 @@ import {combineLatest, Observable} from "rxjs";
 })
 export class FilmsService {
 
-  private films: FilmDTO[] = [];
+  // private films: FilmDTO[] = [];
   private currentFilm: FilmDTO = {
     imdbID: "string",
     Title: "string",
@@ -23,9 +23,19 @@ export class FilmsService {
     Ratings: [],
   };
 
-  get getFilms(): FilmDTO[] {
-    return this.films;
+  private filmsCount = -1;
+
+  get getFilmsCount(): number {
+    return this.filmsCount;
   }
+
+  setFilmsCount(count: number): void {
+    this.filmsCount = count;
+  }
+
+  // get getFilms(): FilmDTO[] {
+  //   return this.films;
+  // }
 
   get getCurrentFilm(): FilmDTO {
     return this.currentFilm;
@@ -38,20 +48,23 @@ export class FilmsService {
   constructor(private omdbService: OmdbService) {
   }
 
-  search(searchString: string): Observable<any> {
-    return this.omdbService.search(searchString)
+  search(searchString: string, page: number): Observable<any> {
+    return this.omdbService.search(searchString, page)
       .pipe(
-        map(data => data['Search']),
+        map(data => {
+          this.setFilmsCount(+data["totalResults"])
+          return data['Search']
+        }),
         switchMap(films => combineLatest(films.map(film => this.omdbService.getInfo(film.imdbID))))
       )
   }
 
-  setFilms(films): void {
-    this.films = films;
-  }
-
-  addFilm(film): void {
-    this.films.push(film);
-  }
+  // setFilms(films): void {
+  //   this.films = films;
+  // }
+  //
+  // addFilm(film): void {
+  //   this.films.push(film);
+  // }
 
 }

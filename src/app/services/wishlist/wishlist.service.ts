@@ -24,6 +24,7 @@ export class WishlistService {
   }
 
   constructor(private firebaseService: FirebaseService, private authService: AuthService) {
+    this.getWishList();
   }
 
   addFilm(film: FilmDTO): void {

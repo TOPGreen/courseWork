@@ -16,6 +16,9 @@ export class FilmCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.film.Poster === "N/A") {
+      this.film.Poster="https://www.imelt.com.tr/r/w-260_h-350/test/test-image-005.png";
+    }
   }
 
   setCurrentFilm(): void {

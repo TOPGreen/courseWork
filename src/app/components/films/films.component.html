@@ -12,7 +12,14 @@
     <app-film-info></app-film-info>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="d-flex flex-wrap films">
+    <mat-paginator *ngIf="filmsCount!==-1"
+                   [length]="filmsCount"
+                   [pageSize]="10"
+                   [pageSizeOptions]="10"
+                   (page)="onPageChange($event)"
+                   [pageIndex]="0">
+    </mat-paginator>
+    <div class="d-flex flex-wrap">
       <app-film-card *ngFor="let film of films | async" [film]="film" (click)="drawer.open()"></app-film-card>
     </div>
   </mat-sidenav-content>
