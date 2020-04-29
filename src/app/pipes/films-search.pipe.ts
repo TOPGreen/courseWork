@@ -3,7 +3,8 @@ import {FilmDTO} from "../interfaces/filmDTO";
 import {run} from "tslint/lib/runner";
 
 @Pipe({
-  name: 'filmsSearch'
+  name: 'filmsSearch',
+  pure: false
 })
 export class FilmsSearchPipe implements PipeTransform {
 

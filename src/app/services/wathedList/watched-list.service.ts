@@ -43,6 +43,7 @@ export class WatchedListService {
   deleteFilm(film: FilmDTO): void {
     const index = this.films.findIndex(el => el.imdbID === film.imdbID)
     this.films.splice(index, 1);
+    console.log(this.films)
     this.firebaseService.addData(this.watchedListCollection, {
       userId: this.authService.getUser.uid,
       films: this.films

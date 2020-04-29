@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WatchedListService} from "../../services/wathedList/watched-list.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
@@ -28,8 +28,6 @@ export class WatchedListComponent implements OnInit {
 
     this.watchedListService.getWatchedList();
   }
-
-
-
-
 }
+
+
