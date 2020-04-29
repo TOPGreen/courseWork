@@ -21,16 +21,17 @@ export class FilmsService {
     Production: "string",
     Plot: "string",
     Ratings: [],
+    Runtime: "string"
   };
 
-  private filmsCount = -1;
+  private filmsCount = 0;
 
   get getFilmsCount(): number {
     return this.filmsCount;
   }
 
   setFilmsCount(count: number): void {
-    this.filmsCount = count;
+    this.filmsCount = count ? count : 0;
   }
 
   // get getFilms(): FilmDTO[] {

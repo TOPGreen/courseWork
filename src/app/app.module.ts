@@ -32,6 +32,8 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { WatchedListComponent } from './components/watched-list/watched-list.component';
 import { MainComponent } from './components/main/main.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FilmsSearchPipe } from './pipes/films-search.pipe';
 
 const MAT_MODULES = [
   MatToolbarModule,
@@ -45,6 +47,7 @@ const MAT_MODULES = [
   MatSidenavModule,
   MatRippleModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
@@ -58,7 +61,8 @@ const MAT_MODULES = [
     FilmInfoComponent,
     WishlistComponent,
     WatchedListComponent,
-    MainComponent
+    MainComponent,
+    FilmsSearchPipe
   ],
     imports: [
         BrowserModule,

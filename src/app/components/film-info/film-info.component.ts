@@ -20,7 +20,7 @@ export class FilmInfoComponent implements OnInit {
     return this.filmsService.getCurrentFilm;
   }
 
-  get currentRoute() {
+  get currentRoute(): string {
     return this.router.url;
   }
 

@@ -22,7 +22,9 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      'search': new FormControl(null, [])
+      'search': new FormControl(null, []),
+      'genre': new FormControl('Any', []),
+      'runtime': new FormControl('Any', []),
     });
 
     this.wishlistService.getWishList();

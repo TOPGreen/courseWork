@@ -21,7 +21,9 @@ export class WatchedListComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      'search': new FormControl(null, [])
+      'search': new FormControl('', []),
+      'genre': new FormControl('Any', []),
+      'runtime': new FormControl('Any', []),
     });
 
     this.watchedListService.getWatchedList();

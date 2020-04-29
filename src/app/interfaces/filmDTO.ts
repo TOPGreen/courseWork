@@ -9,4 +9,5 @@ export interface FilmDTO {
   Production: string,
   Plot:string,
   Ratings:[],
+  Runtime:string;
 }

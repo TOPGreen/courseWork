@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.doLogout();
+    this.authService.doLogout().catch(err => console.log(err));
   }
 
 }

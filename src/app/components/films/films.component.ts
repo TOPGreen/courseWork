@@ -4,22 +4,25 @@ import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {fromEvent, Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 import {FilmDTO} from "../../interfaces/filmDTO";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-films',
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css']
 })
-export class FilmsComponent implements OnInit {
+export class FilmsComponent implements OnInit, AfterViewInit {
 
   data = {};
   searchForm: FormGroup;
-  films: Observable<FilmDTO[]>
+  films$: Observable<FilmDTO[]>
   errorMessage: string;
   pageEvent: PageEvent;
 
-  get filmsCount() {
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+
+  get filmsCount(): number {
     return this.filmsService.getFilmsCount;
   };
 
@@ -27,11 +30,9 @@ export class FilmsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.pageEvent = new PageEvent();
-    this.pageEvent.pageIndex = 0;
     this.searchForm = new FormGroup({
-      'search': new FormControl(null, [])
+      'search': new FormControl("Harry Potter", [])
     });
 
     this.searchForm.controls['search'].valueChanges
@@ -41,7 +42,7 @@ export class FilmsComponent implements OnInit {
       )
       .subscribe(
         value => {
-          this.pageEvent.pageIndex = 0;
+          this.paginator.pageIndex = 0;
           this.searchFilm(value)
           this.errorMessage = "";
         }
@@ -49,14 +50,19 @@ export class FilmsComponent implements OnInit {
 
   }
 
-  onPageChange(event: PageEvent) {
+  onPageChange(event: PageEvent): void {
     this.pageEvent = event;
     this.searchFilm(this.searchForm.controls['search'].value);
   }
 
   searchFilm(searchString: string): void {
-    this.films = this.filmsService.search(searchString, this.pageEvent.pageIndex + 1);
-    console.log(this.films)
+    this.films$ = this.filmsService.search(searchString, this.paginator.pageIndex + 1)//this.pageEvent.pageIndex + 1);
+  }
+
+  ngAfterViewInit(): void {
+    console.log("after")
+    this.paginator.pageIndex = 0;
+    this.searchFilm("Harry Potter");
   }
 
 }

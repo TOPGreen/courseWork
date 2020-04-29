@@ -24,7 +24,7 @@ export class AuthService {
     return this.isAuth;
   }
 
-  doRegister(value): Promise<any> {
+  async doRegister(value): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
         .then(res => {
@@ -35,7 +35,7 @@ export class AuthService {
     })
   }
 
-  doLogin(value): Promise<any> {
+  async doLogin(value): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afAuth.signInWithEmailAndPassword(value.email, value.password)
         .then(res => {
@@ -46,7 +46,7 @@ export class AuthService {
     })
   }
 
-  doLogout(): Promise<any> {
+  async doLogout(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afAuth.signOut()
         .then(res => {
