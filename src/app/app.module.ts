@@ -34,6 +34,10 @@ import { MainComponent } from './components/main/main.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FilmsSearchPipe } from './pipes/films-search.pipe';
+import { CompilationsListComponent } from './components/compilations-list/compilations-list.component';
+import { CompilationCardComponent } from './components/compilation-card/compilation-card.component';
+import { CompilationAddComponent } from './components/compilation-add/compilation-add.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 const MAT_MODULES = [
   MatToolbarModule,
@@ -48,6 +52,7 @@ const MAT_MODULES = [
   MatRippleModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatExpansionModule,
 ];
 
 @NgModule({
@@ -62,7 +67,10 @@ const MAT_MODULES = [
     WishlistComponent,
     WatchedListComponent,
     MainComponent,
-    FilmsSearchPipe
+    FilmsSearchPipe,
+    CompilationsListComponent,
+    CompilationCardComponent,
+    CompilationAddComponent,
   ],
     imports: [
         BrowserModule,

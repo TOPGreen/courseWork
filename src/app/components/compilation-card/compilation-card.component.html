@@ -1,0 +1,24 @@
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front d-flex flex-column">
+      <h2 class="m-auto">{{compilation.title}}</h2>
+      <p class="font-weight-bold">
+        {{compilation.films.length}} {{compilation.films.length === 1 ? 'film' : 'films'}}
+      </p>
+    </div>
+    <div class="flip-card-back flex-column d-flex justify-content-center">
+      <div class="w-100">
+        <span class="remove-btn float-right pr-2 font-weight-bold" (click)="dleteCompilation($event)">x</span>
+      </div>
+      <div class="m-auto text-break">
+        <p class="font-weight-bold">
+          Description
+        </p>
+        <p>
+          {{compilation.description}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

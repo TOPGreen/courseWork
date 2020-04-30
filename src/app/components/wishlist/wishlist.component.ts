@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WishlistService} from "../../services/wishlist/wishlist.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
-import {WatchedListService} from "../../services/wathedList/watched-list.service";
 
 @Component({
   selector: 'app-wishlist',

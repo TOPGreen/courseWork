@@ -10,8 +10,8 @@ import {WishlistService} from "../wishlist/wishlist.service";
 export class WatchedListService {
 
   private films: FilmDTO[] = [];
-  private watchedListCollection = 'watchedList';
-  private doc;
+  private watchedListCollection: string = 'watchedList';
+  private doc: any;
 
   get getFilms(): FilmDTO[] {
     return this.films;
@@ -32,7 +32,7 @@ export class WatchedListService {
     }
 
     this.films.push(film);
-    this.firebaseService.addData(this.watchedListCollection,
+    this.firebaseService.updateData(this.watchedListCollection,
       {
         userId: this.authService.getUser.uid,
         films: this.films,
@@ -44,7 +44,7 @@ export class WatchedListService {
     const index = this.films.findIndex(el => el.imdbID === film.imdbID)
     this.films.splice(index, 1);
     console.log(this.films)
-    this.firebaseService.addData(this.watchedListCollection, {
+    this.firebaseService.updateData(this.watchedListCollection, {
       userId: this.authService.getUser.uid,
       films: this.films
     }, this.doc)

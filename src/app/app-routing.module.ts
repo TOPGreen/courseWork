@@ -7,6 +7,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {WishlistComponent} from "./components/wishlist/wishlist.component";
 import {WatchedListComponent} from "./components/watched-list/watched-list.component";
 import {MainComponent} from "./components/main/main.component";
+import {CompilationsListComponent} from "./components/compilations-list/compilations-list.component";
 
 
 const routes: Routes = [
@@ -39,7 +40,11 @@ const routes: Routes = [
         {
           path: 'watched',
           component: WatchedListComponent,
-        }
+        },
+        {
+          path: 'compilations',
+          component: CompilationsListComponent,
+        },
       ]
     }
   ]

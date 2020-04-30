@@ -1,51 +1,48 @@
-<form [formGroup]="searchForm" class="d-flex flex-column align-items-center  justify-content-center flex-wrap pt-10">
-  <mat-form-field [style.fontSize]="'18px'">
-    <mat-label>Search film</mat-label>
-    <input formControlName="search" matInput placeholder="Harry Potter">
-  </mat-form-field>
-  <div class="d-flex justify-content-start w-100 px-5">
-    <mat-form-field class="mr-2">
-      <mat-label>Genre</mat-label>
-      <select matNativeControl formControlName="genre">
-        <option value="Any">Any</option>
-        <option value="Horror">Horror</option>
-        <option value="Comedy">Comedy</option>
-        <option value="Thriller">Thriller</option>
-        <option value="Drama">Drama</option>
-        <option value="Sci-fi">Sci-fi</option>
-        <option value="Action">Action</option>
-        <option value="Adventure">Adventure</option>
-        <option value="Fantasy">Fantasy</option>
-        <option value="Animated film">Animated film</option>
-        <option value="Documentary">Documentary</option>
-        <option value="Detective ">Detective</option>
-        <option value="Biopic ">Biopic </option>
-      </select>
-    </mat-form-field>
-    <mat-form-field class="mr-2">
-      <mat-label>Runtime</mat-label>
-      <select matNativeControl formControlName="runtime">
-        <option Any="audi">Any</option>
-        <option value="100"><100</option>
-        <option value="150"><150</option>
-        <option value="200"><200</option>
-      </select>
-    </mat-form-field>
-  </div>
-</form>
 <mat-sidenav-container class="example-container" [hasBackdrop]="false">
   <mat-sidenav #drawer mode="side" class="p-2" [fixedInViewport]="true">
-    <div class="close-drawer-container float-right">
-      <button mat-flat-button color="warn" class="float-right" (click)="drawer.close()">x</button>
-    </div>
-    <app-film-info></app-film-info>
+    <app-film-info (close)="drawer.close()"></app-film-info>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content (click)="drawer.close()">
+    <form [formGroup]="searchForm" class="d-flex flex-column align-items-center  justify-content-center flex-wrap pt-10">
+      <mat-form-field [style.fontSize]="'18px'">
+        <mat-label>Search film</mat-label>
+        <input formControlName="search" matInput placeholder="Harry Potter">
+      </mat-form-field>
+      <div class="d-flex justify-content-start w-100 px-5">
+        <mat-form-field class="mr-2 select">
+          <mat-label>Genre</mat-label>
+          <select matNativeControl formControlName="genre">
+            <option value="Any">Any</option>
+            <option value="Horror">Horror</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Drama">Drama</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Animated film">Animated film</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Detective ">Detective</option>
+            <option value="Biopic ">Biopic </option>
+          </select>
+        </mat-form-field>
+        <mat-form-field class="mr-2 select">
+          <mat-label>Runtime</mat-label>
+          <select matNativeControl formControlName="runtime">
+            <option value="Any">Any</option>
+            <option value="100"><100</option>
+            <option value="150"><150</option>
+            <option value="200"><200</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </form>
     <div class="d-flex flex-wrap films">
       <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get('search').value
       : searchForm.get('genre').value: searchForm.get('runtime').value"
                      [film]="film"
-                     (click)="drawer.open()"></app-film-card>
+                     (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

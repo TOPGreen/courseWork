@@ -8,12 +8,13 @@ form{
 
 mat-sidenav{
   width: 35%;
+  min-width: 300px;
 }
 
 .close-drawer-container{
-  /*width: 100%;*/
-  position: absolute;
-  right: 2px;
+  width: 100%;
+  /*position: absolute;*/
+  /*right: 2px;*/
 }
 
 mat-sidenav-content {
@@ -25,4 +26,9 @@ mat-sidenav-content {
 
 .errorMessage{
   font-size: 18px;
+}
+
+.select{
+  width: 10%;
+  min-width: 120px;
 }

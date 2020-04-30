@@ -17,7 +17,7 @@ export class OmdbService {
   }
 
   getInfo(id: string): Observable<FilmDTO> {
-    return this.httpClient.get<FilmDTO>(`${OMDB_URL}&plot=full&i=${id}`);
+    return this.httpClient.get<FilmDTO>(`${OMDB_URL}&i=${id}`);
   }
 
 }
