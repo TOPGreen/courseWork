@@ -47,7 +47,6 @@ export class FilmsComponent implements OnInit, AfterViewInit {
           this.errorMessage = "";
         }
       )
-
   }
 
   onPageChange(event: PageEvent): void {

@@ -22,6 +22,7 @@ export class CompilationsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.compilationsService.getUserCompilations();
   }
 
   setCurrentCompilation(compilation: CompilationDTO) {
