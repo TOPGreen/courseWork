@@ -7,7 +7,6 @@ import {CompilationDTO} from "../../interfaces/CompilationDTO";
   styleUrls: ['./compilation-card.component.css']
 })
 export class CompilationCardComponent implements OnInit {
-
   @Input()
   compilation: CompilationDTO;
 
@@ -17,15 +16,12 @@ export class CompilationCardComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit()
-    :
-    void {
+  ngOnInit(): void {
   }
 
-  dleteCompilation(event) {
+  deleteCompilation(event): void {
     event.stopPropagation();
     this.onDelete.emit()
-
   }
 
 }

@@ -11,5 +11,5 @@
      [routerLinkActiveOptions]="{ exact: true }">WatchedList</a>
   <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/films/compilations'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }">Compilations</a>
-  <a *ngIf="authService.authStatus" mat-tab-link [routerLink]="'/'" (click)="logOut()">Log out</a>
+  <a *ngIf="authService.authStatus" mat-tab-link (click)="logOut()">Log out</a>
 </nav>

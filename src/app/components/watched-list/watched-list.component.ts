@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WatchedListService} from "../../services/wathedList/watched-list.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
@@ -8,13 +8,8 @@ import {FilmDTO} from "../../interfaces/filmDTO";
   templateUrl: './watched-list.component.html',
   styleUrls: ['./watched-list.component.css']
 })
-export class WatchedListComponent implements OnInit {
-
-  searchForm: FormGroup;
-
-  get films(): FilmDTO[] {
-    return this.watchedListService.getFilms;
-  }
+export class WatchedListComponent implements OnInit, OnDestroy {
+  public searchForm: FormGroup;
 
   constructor(private watchedListService: WatchedListService) {
   }
@@ -27,6 +22,14 @@ export class WatchedListComponent implements OnInit {
     });
 
     this.watchedListService.getWatchedList();
+  }
+
+  ngOnDestroy(): void {
+    this.watchedListService.setFilms([]);
+  }
+
+  get films(): FilmDTO[] {
+    return this.watchedListService.getFilms;
   }
 }
 

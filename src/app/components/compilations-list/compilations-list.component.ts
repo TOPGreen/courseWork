@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CompilationsService} from "../../services/compilations/compilations.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {CompilationDTO} from "../../interfaces/CompilationDTO";
@@ -8,7 +8,13 @@ import {CompilationDTO} from "../../interfaces/CompilationDTO";
   templateUrl: './compilations-list.component.html',
   styleUrls: ['./compilations-list.component.css']
 })
-export class CompilationsListComponent implements OnInit {
+export class CompilationsListComponent implements OnInit, OnDestroy {
+  constructor(private compilationsService: CompilationsService) {
+  }
+
+  ngOnInit(): void {
+    this.compilationsService.getUserCompilations();
+  }
 
   get compilations(): CompilationDTO[] {
     return this.compilationsService.getCompilations;
@@ -18,19 +24,17 @@ export class CompilationsListComponent implements OnInit {
     return this.compilationsService.getCurrentCompilationFilms;
   }
 
-  constructor(private compilationsService: CompilationsService) {
+  setCurrentCompilation(index: number): void {
+    this.compilationsService.setCurrentCompilation(index);
   }
 
-  ngOnInit(): void {
-    this.compilationsService.getUserCompilations();
-  }
-
-  setCurrentCompilation(compilation: CompilationDTO) {
-    this.compilationsService.setCurrentCompilation(compilation);
-  }
-
-  deleteCompilation(index:number){
+  deleteCompilation(index: number): void {
     this.compilationsService.deleteCompilation(index);
   }
+
+  ngOnDestroy(): void {
+    this.compilationsService.setCompilations([]);
+  }
+
 
 }

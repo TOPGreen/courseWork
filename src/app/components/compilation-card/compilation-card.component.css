@@ -11,7 +11,7 @@ img {
   margin-top: 5px;
   background-color: transparent;
   width: 300px;
-  /*min-width: 200px;*/
+  min-width: 200px;
   height: 150px;
   perspective: 1000px;
   /* Remove this if you don't want the 3D effect */

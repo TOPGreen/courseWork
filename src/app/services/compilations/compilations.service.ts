@@ -8,12 +8,16 @@ import {AuthService} from "../auth/auth.service";
   providedIn: 'root'
 })
 export class CompilationsService {
-
   private compilations: CompilationDTO[] = []
   private compilationsList: string[];
   private currentCompilation: CompilationDTO;
   private compilationsCollection: string = 'compilations';
   private doc;
+
+  constructor(private firebaseService: FirebaseService,
+              private authService: AuthService) {
+    this.getUserCompilations();
+  }
 
   get getCompilations(): CompilationDTO[] {
     return this.compilations;
@@ -28,20 +32,25 @@ export class CompilationsService {
     return this.currentCompilation && this.currentCompilation.films ? this.currentCompilation.films : [];
   }
 
-  setCurrentCompilation(compilation: CompilationDTO): void {
-    this.currentCompilation = compilation;
+  get getCurrentCompilationTitle(): string {
+    return this.currentCompilation ? this.currentCompilation.title : "";
   }
 
-  constructor(private firebaseService: FirebaseService,
-              private authService: AuthService) {
-    this.getUserCompilations();
+
+  setCurrentCompilation(index: number): void {
+    this.currentCompilation = this.compilations[index];
+    console.log(this.currentCompilation.title)
+  }
+
+  setCompilations(compilations: CompilationDTO[]): void {
+    this.compilations = compilations;
   }
 
   updateCompilationsList(): void {
     this.compilationsList = this.compilations.map(compilation => compilation.title);
   }
 
-  addCompilation(compilation: CompilationDTO) {
+  addCompilation(compilation: CompilationDTO): void {
     if (this.compilations.some(el => el.title === compilation.title)) {
       alert("The compilation has already been exist");
       return;
@@ -56,7 +65,7 @@ export class CompilationsService {
   }
 
 
-  addFilm(compilation: string, film: FilmDTO) {
+  addFilm(compilation: string, film: FilmDTO): void {
     this.compilations.forEach(el => {
       if (el.title === compilation) {
         if (el.films.some(el => el.imdbID === film.imdbID)) {
@@ -73,7 +82,7 @@ export class CompilationsService {
     })
   }
 
-  deleteFilm(film: FilmDTO) {
+  deleteFilm(film: FilmDTO): void {
     this.compilations.forEach(el => {
       if (el.title === this.currentCompilation.title) {
         const index = el.films.findIndex(filmEl => filmEl.imdbID === film.imdbID)
@@ -85,6 +94,7 @@ export class CompilationsService {
         return;
       }
     })
+
   }
 
   getUserCompilations(): void {

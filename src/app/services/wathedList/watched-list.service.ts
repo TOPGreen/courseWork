@@ -8,10 +8,13 @@ import {WishlistService} from "../wishlist/wishlist.service";
   providedIn: 'root'
 })
 export class WatchedListService {
-
   private films: FilmDTO[] = [];
   private watchedListCollection: string = 'watchedList';
   private doc: any;
+
+  constructor(private firebaseService: FirebaseService, private authService: AuthService) {
+    this.getWatchedList();
+  }
 
   get getFilms(): FilmDTO[] {
     return this.films;
@@ -19,10 +22,6 @@ export class WatchedListService {
 
   setFilms(films: FilmDTO[]): void {
     this.films = films;
-  }
-
-  constructor(private firebaseService: FirebaseService, private authService: AuthService) {
-    this.getWatchedList();
   }
 
   addFilm(film: FilmDTO): void {

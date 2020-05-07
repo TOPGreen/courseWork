@@ -10,10 +10,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
-
-  regForm: FormGroup;
-  errorMessage: string = '';
+  public regForm: FormGroup;
+  public errorMessage: string = '';
 
   constructor(private firebase: FirebaseService, private authService: AuthService, private router: Router) {
   }
@@ -30,7 +28,7 @@ export class RegistrationComponent implements OnInit {
     if (this.regForm.valid && this.regForm.value.password === this.regForm.value.confirmedPassword) {
       this.tryRegister(this.regForm.value);
     } else {
-      this.errorMessage = "Некорректные данные";
+      this.errorMessage = "Incorrect input";
     }
   }
 

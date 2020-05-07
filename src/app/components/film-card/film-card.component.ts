@@ -8,7 +8,6 @@ import {FilmsService} from "../../services/films/films.service";
   styleUrls: ['./film-card.component.css']
 })
 export class FilmCardComponent implements OnInit {
-
   @Input()
   film: FilmDTO;
 
@@ -17,7 +16,7 @@ export class FilmCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.film.Poster === "N/A") {
-      this.film.Poster="https://www.imelt.com.tr/r/w-260_h-350/test/test-image-005.png";
+      this.film.Poster="https://clotilda.ru/sites/default/files/styles/900x1200/public/default_images/no-image.jpg?itok=x1wQrkTb"
     }
   }
 

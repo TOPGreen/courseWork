@@ -8,11 +8,11 @@ import {CompilationsService} from "../../services/compilations/compilations.serv
   styleUrls: ['./compilation-add.component.css']
 })
 export class CompilationAddComponent implements OnInit {
+  public compilationForm: FormGroup;
 
   @Output()
   close = new EventEmitter<void>();
 
-  compilationForm: FormGroup;
 
   constructor(private compilationsService: CompilationsService) {
   }
@@ -23,7 +23,6 @@ export class CompilationAddComponent implements OnInit {
       "description": new FormControl('', [Validators.required]),
     })
   }
-
 
   onSubmit(): void {
     if (this.compilationForm.valid) {

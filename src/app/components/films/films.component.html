@@ -6,24 +6,22 @@
     <form [formGroup]="searchForm" class="d-flex flex-column align-items-center justify-content-center flex-wrap pt-10">
       <mat-form-field [style.fontSize]="'18px'">
         <mat-label>Search film</mat-label>
-        <input formControlName="search" matInput placeholder="Harry Potter">
+        <input formControlName="search" matInput>
       </mat-form-field>
     </form>
     <mat-paginator [length]="filmsCount"
                    [pageSize]="10"
-                   [pageSizeOptions]="10"
                    (page)="onPageChange($event)"
                    [pageIndex]="0">
     </mat-paginator>
-    <div class="d-flex flex-wrap" *ngIf="(films$ | async) as films; else loader;">
+    <div class="d-flex flex-wrap" *ngIf="!isLoading && (films$ | async) as films;">
       <app-film-card *ngFor="let film of films" [film]="film"
                      (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
     </div>
-    <ng-template #loader class="d-flex">
-      <div class="d-flex justify-content-center">
-        <mat-progress-spinner mode="indeterminate">
-        </mat-progress-spinner>
-      </div>
-    </ng-template>
+    <div *ngIf="isLoading" class="d-flex justify-content-center">
+      <h2 *ngIf="!searchForm.get('search').value">Enter a string in the search</h2>
+      <mat-progress-spinner *ngIf="searchForm.get('search').value" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

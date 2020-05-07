@@ -13,13 +13,21 @@ import {CompilationsService} from "../../services/compilations/compilations.serv
   styleUrls: ['./film-info.component.css']
 })
 export class FilmInfoComponent implements OnInit {
-
   @Input()
   film: FilmDTO;
 
   @Output()
   close = new EventEmitter<void>();
 
+  constructor(private filmsService: FilmsService,
+              private wishlistService: WishlistService,
+              private watchedListService: WatchedListService,
+              private router: Router,
+              private compilationsService: CompilationsService) {
+  }
+
+  ngOnInit(): void {
+  }
 
   get currentFilm(): FilmDTO {
     return this.filmsService.getCurrentFilm;
@@ -33,17 +41,11 @@ export class FilmInfoComponent implements OnInit {
     return this.compilationsService.getCompilationsList;
   }
 
-  constructor(private filmsService: FilmsService,
-              private wishlistService: WishlistService,
-              private watchedListService: WatchedListService,
-              private router: Router,
-              private compilationsService: CompilationsService) {
+  get currentCompilationTitle(): string {
+    return this.compilationsService.getCurrentCompilationTitle;
   }
 
-  ngOnInit(): void {
-  }
-
-  onClose(){
+  onClose(): void {
     this.close.emit();
   }
 
@@ -67,7 +69,7 @@ export class FilmInfoComponent implements OnInit {
     this.compilationsService.addFilm(compilation, this.currentFilm);
   }
 
-  removeFromCompilation(){
+  removeFromCompilation(): void {
     this.compilationsService.deleteFilm(this.currentFilm);
   }
 

@@ -13,7 +13,8 @@ import {CompilationsListComponent} from "./components/compilations-list/compilat
 const routes: Routes = [
     {
       path: '',
-      redirectTo: 'login',
+      canActivate: [AuthGuard],
+      redirectTo: 'films',
       pathMatch: 'full'
     },
     {

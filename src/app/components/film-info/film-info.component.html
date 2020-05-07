@@ -31,10 +31,11 @@
       Add to selected compilation
     </button>
   </div>
-  <div class="mb-2">
-    <button *ngIf="currentRoute==='/films/compilations'"
-            mat-raised-button
-            color="warn" (click)="removeFromCompilation()">
+  <div class="mb-2 d-flex justify-content-start" *ngIf="currentRoute==='/films/compilations'">
+    <p class="m-auto"><b>Current compilation : </b>{{currentCompilationTitle}}</p>
+    <button mat-raised-button
+            color="warn" (click)="removeFromCompilation()"
+            class="m-auto">
       Remove from compilation
     </button>
   </div>

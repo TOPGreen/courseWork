@@ -1,6 +1,11 @@
-mat-sidenav {
+.side-left {
   width: 35%;
   min-width: 300px;
+}
+
+.side-right{
+  width: 20%;
+  min-width: 200px;
 }
 
 mat-sidenav-content {
@@ -20,3 +25,21 @@ mat-sidenav-content {
   overflow-y: hidden;
   overflow-x: auto;
 }
+
+.add-btn{
+  width: 300px;
+  min-width: 300px;
+  height: 150px;
+  background-color: white;
+  border-radius: 15px;
+  font-size: 20px;
+  color: #3d50b6;
+  border: 5px solid #3d50b6;
+  margin-top: 5px;
+}
+
+.add-btn:hover{
+  color: white;
+  background-color: #3d50b6;
+}
+

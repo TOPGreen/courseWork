@@ -1,20 +1,21 @@
 <mat-sidenav-container class="example-container" [hasBackdrop]="false">
   <mat-sidenav #drawerRight mode="over" class="p-2 side-right" [fixedInViewport]="true" position="end">
-    <div class="d-flex justify-content-center align-items-center flex-column">
+    <div class="d-flex justify-content-center flex-column">
       <app-compilation-add (close)="drawerRight.close()"></app-compilation-add>
     </div>
   </mat-sidenav>
-  <mat-sidenav #drawerLeft mode="side" class="p-2" [fixedInViewport]="true">
+  <mat-sidenav #drawerLeft mode="side" class="p-2 side-left" [fixedInViewport]="true">
     <app-film-info (close)="drawerLeft.close()"></app-film-info>
   </mat-sidenav>
   <mat-sidenav-content class="d-flex justify-content-center flex-column overflow-hidden"
                        (click)="drawerLeft.close(); drawerRight.close()">
     <div class="d-inline-flex compilations-container align-items-center">
-      <button mat-flat-button color="primary"   (click)="$event.stopPropagation(); drawerRight.open()">Add
+      <button mat-flat-button class="add-btn" color="primary" (click)="$event.stopPropagation(); drawerRight.open()">
+        Add new compilation
       </button>
       <app-compilation-card *ngFor="let compilation of compilations; let index = index"
                             [compilation]="compilation"
-                            (click)="setCurrentCompilation(compilation)"
+                            (click)="setCurrentCompilation(index)"
                             (onDelete)="deleteCompilation(index)">
       </app-compilation-card>
     </div>

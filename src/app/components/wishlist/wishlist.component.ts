@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WishlistService} from "../../services/wishlist/wishlist.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
@@ -8,13 +8,8 @@ import {FilmDTO} from "../../interfaces/filmDTO";
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
-export class WishlistComponent implements OnInit {
-
-  searchForm: FormGroup;
-
-  get films(): FilmDTO[] {
-    return this.wishlistService.getFilms;
-  }
+export class WishlistComponent implements OnInit, OnDestroy {
+  public searchForm: FormGroup;
 
   constructor(private wishlistService: WishlistService) {
   }
@@ -29,4 +24,11 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.getWishList();
   }
 
+  ngOnDestroy(): void {
+    this.wishlistService.setFilms([]);
+  }
+
+  get films(): FilmDTO[] {
+    return this.wishlistService.getFilms;
+  }
 }
