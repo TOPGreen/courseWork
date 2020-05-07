@@ -11,6 +11,7 @@ export class CompilationsService {
   private compilations: CompilationDTO[] = []
   private compilationsList: string[];
   private currentCompilation: CompilationDTO;
+  private currentCompilationIndex: number;
   private compilationsCollection: string = 'compilations';
   private doc;
 
@@ -38,11 +39,11 @@ export class CompilationsService {
 
 
   setCurrentCompilation(index: number): void {
+    this.currentCompilationIndex = index;
     this.currentCompilation = this.compilations[index];
-    console.log(this.currentCompilation.title)
   }
 
-  setCompilations(compilations: CompilationDTO[]): void {
+  setCompilations(compilations: CompilationDTO[]) {
     this.compilations = compilations;
   }
 
@@ -85,7 +86,7 @@ export class CompilationsService {
   deleteFilm(film: FilmDTO): void {
     this.compilations.forEach(el => {
       if (el.title === this.currentCompilation.title) {
-        const index = el.films.findIndex(filmEl => filmEl.imdbID === film.imdbID)
+        const index = el.films.findIndex(filmEl => filmEl.imdbID === film.imdbID);
         el.films.splice(index, 1);
         this.firebaseService.updateData(this.compilationsCollection, {
           userId: this.authService.getUser.uid,
@@ -106,6 +107,9 @@ export class CompilationsService {
   }
 
   deleteCompilation(index: number): void {
+    if (this.currentCompilationIndex === index) {
+      this.setCurrentCompilation(index > 0 ? index - 1 : 1);
+    }
     this.compilations.splice(index, 1);
     this.firebaseService.updateData(this.compilationsCollection, {
       userId: this.authService.getUser.uid,

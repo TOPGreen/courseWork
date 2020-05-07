@@ -1,4 +1,4 @@
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center p-2">
   <div class="close-drawer-container d-flex mb-2 w-100">
     <button mat-flat-button color="warn" class="float-left" (click)="onClose()">
       <mat-icon>arrow_forward</mat-icon>
@@ -9,13 +9,13 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter compilation's title</mat-label>
-        <input formControlName="title" matInput placeholder="Placeholder">
+        <input [formControlName]="titleControlName" matInput placeholder="Placeholder">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter compilation's description</mat-label>
-        <textarea formControlName="description" matInput type="text"></textarea>
+        <textarea [formControlName]="descriptionControlName" matInput type="text"></textarea>
       </mat-form-field>
     </div>
     <button mat-raised-button color="primary" (click)="onSubmit()">Add</button>

@@ -2,6 +2,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CompilationsService} from "../../services/compilations/compilations.service";
 
+const titleControlName = "title";
+const descriptionControlName = "description";
+
 @Component({
   selector: 'app-compilation-add',
   templateUrl: './compilation-add.component.html',
@@ -13,15 +16,22 @@ export class CompilationAddComponent implements OnInit {
   @Output()
   close = new EventEmitter<void>();
 
-
   constructor(private compilationsService: CompilationsService) {
   }
 
   ngOnInit(): void {
     this.compilationForm = new FormGroup({
-      "title": new FormControl('', [Validators.required]),
-      "description": new FormControl('', [Validators.required]),
+      [titleControlName]: new FormControl('', [Validators.required]),
+      [descriptionControlName]: new FormControl('', [Validators.required]),
     })
+  }
+
+  get titleControlName(): string {
+    return titleControlName;
+  }
+
+  get descriptionControlName(): string {
+    return descriptionControlName;
   }
 
   onSubmit(): void {

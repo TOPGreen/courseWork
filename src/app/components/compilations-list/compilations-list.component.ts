@@ -8,7 +8,7 @@ import {CompilationDTO} from "../../interfaces/CompilationDTO";
   templateUrl: './compilations-list.component.html',
   styleUrls: ['./compilations-list.component.css']
 })
-export class CompilationsListComponent implements OnInit, OnDestroy {
+export class CompilationsListComponent implements OnInit {
   constructor(private compilationsService: CompilationsService) {
   }
 
@@ -31,10 +31,4 @@ export class CompilationsListComponent implements OnInit, OnDestroy {
   deleteCompilation(index: number): void {
     this.compilationsService.deleteCompilation(index);
   }
-
-  ngOnDestroy(): void {
-    this.compilationsService.setCompilations([]);
-  }
-
-
 }

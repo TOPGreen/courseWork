@@ -4,6 +4,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
 
+const emailControlName = "email";
+const passwordControlName = "password"
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,9 +21,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl("test@test.ru", [Validators.required, Validators.email]),
-      password: new FormControl("test123", [Validators.required]),
+      [emailControlName]: new FormControl("test@test.ru", [Validators.required, Validators.email]),
+      [passwordControlName]: new FormControl("test123", [Validators.required]),
     })
+  }
+
+  get emailControlName(): string {
+    return emailControlName;
+  }
+
+  get passwordControlName(): string {
+    return passwordControlName;
   }
 
   onSubmit(): void {

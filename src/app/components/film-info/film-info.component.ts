@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {FilmsService} from "../../services/films/films.service";
 import {WishlistService} from "../../services/wishlist/wishlist.service";
@@ -27,6 +27,7 @@ export class FilmInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.compilationsService.getUserCompilations()
   }
 
   get currentFilm(): FilmDTO {
@@ -72,5 +73,4 @@ export class FilmInfoComponent implements OnInit {
   removeFromCompilation(): void {
     this.compilationsService.deleteFilm(this.currentFilm);
   }
-
 }

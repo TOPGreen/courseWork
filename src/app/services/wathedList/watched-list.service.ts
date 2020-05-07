@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {FirebaseService} from "../firebaseApi/firebase.service";
 import {AuthService} from "../auth/auth.service";
-import {WishlistService} from "../wishlist/wishlist.service";
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +41,6 @@ export class WatchedListService {
   deleteFilm(film: FilmDTO): void {
     const index = this.films.findIndex(el => el.imdbID === film.imdbID)
     this.films.splice(index, 1);
-    console.log(this.films)
     this.firebaseService.updateData(this.watchedListCollection, {
       userId: this.authService.getUser.uid,
       films: this.films

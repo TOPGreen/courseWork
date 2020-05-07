@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FilmDTO} from "../../interfaces/filmDTO";
-import {OmdbService} from "../omdbApi/omdb.service";
 import {FirebaseService} from "../firebaseApi/firebase.service";
 import {AuthService} from "../auth/auth.service";
-import {WatchedListService} from "../wathedList/watched-list.service";
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +54,4 @@ export class WishlistService {
       this.films = this.doc ? this.doc.data().films : [];
     })
   }
-
 }

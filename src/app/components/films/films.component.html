@@ -6,7 +6,7 @@
     <form [formGroup]="searchForm" class="d-flex flex-column align-items-center justify-content-center flex-wrap pt-10">
       <mat-form-field [style.fontSize]="'18px'">
         <mat-label>Search film</mat-label>
-        <input formControlName="search" matInput>
+        <input [formControlName]="searchControlName" matInput>
       </mat-form-field>
     </form>
     <mat-paginator [length]="filmsCount"
@@ -14,13 +14,13 @@
                    (page)="onPageChange($event)"
                    [pageIndex]="0">
     </mat-paginator>
-    <div class="d-flex flex-wrap" *ngIf="!isLoading && (films$ | async) as films;">
-      <app-film-card *ngFor="let film of films" [film]="film"
-                     (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
-    </div>
+      <div class="d-flex flex-wrap" *ngIf="!isLoading && (films$ | async) as films;">
+        <app-film-card *ngFor="let film of films" [film]="film"
+                       (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
+      </div>
     <div *ngIf="isLoading" class="d-flex justify-content-center">
-      <h2 *ngIf="!searchForm.get('search').value">Enter a string in the search</h2>
-      <mat-progress-spinner *ngIf="searchForm.get('search').value" mode="indeterminate">
+      <h2 *ngIf="!searchForm.get(searchControlName).value">Enter a string in the search</h2>
+      <mat-progress-spinner *ngIf="searchForm.get(searchControlName).value" mode="indeterminate">
       </mat-progress-spinner>
     </div>
   </mat-sidenav-content>

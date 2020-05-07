@@ -17,49 +17,49 @@
     <br>
     <p><b>Plot :</b> {{currentFilm.Plot}}</p>
   </div>
-  <div *ngIf="currentRoute!=='/films/compilations'" class="d-flex justify-content-start mb-2">
-    <mat-form-field class="m-auto">
+  <div *ngIf="currentRoute!=='/films/compilations'" class="d-flex justify-content-start mb-2 flex-wrap">
+    <mat-form-field class="m-auto active-item">
       <mat-label>Compilation</mat-label>
       <select matNativeControl #compilation>
         <option *ngFor="let compilation of compilationsList" [value]="compilation">{{compilation}}</option>
       </select>
     </mat-form-field>
     <button mat-raised-button
-            class="m-auto"
+            class="m-auto active-item"
             color="primary"
             (click)="addToCompilation(compilation.value)">
       Add to selected compilation
     </button>
   </div>
-  <div class="mb-2 d-flex justify-content-start" *ngIf="currentRoute==='/films/compilations'">
-    <p class="m-auto"><b>Current compilation : </b>{{currentCompilationTitle}}</p>
+  <div class="mb-2 d-flex justify-content-start flex-wrap" *ngIf="currentRoute==='/films/compilations'">
+    <p class="mx-auto mb-2 active-item"><b>Compilation : </b>{{currentCompilationTitle}}</p>
     <button mat-raised-button
             color="warn" (click)="removeFromCompilation()"
-            class="m-auto">
+            class="m-auto active-item">
       Remove from compilation
     </button>
   </div>
-  <div class="d-flex justify-content-start">
+  <div class="d-flex justify-content-start flex-wrap">
     <button *ngIf="currentRoute !== '/films/wish'"
-            class="m-auto"
+            class="mx-auto mb-2 active-item"
             mat-raised-button
             color="primary" (click)="addToWishList()">
       Add to wishlist
     </button>
     <button *ngIf="currentRoute !== '/films/watched'"
-            class="m-auto" mat-raised-button
+            class="mx-auto mb-2 active-item" mat-raised-button
             color="primary"
             (click)="addToWatchedList()">
       Add to watchedList
     </button>
     <button *ngIf="currentRoute === '/films/wish'"
-            class="m-auto" mat-raised-button
+            class="mx-auto mb-2 active-item" mat-raised-button
             color="warn"
             (click)="removeFromWishList()">
       Remove from wishList
     </button>
     <button *ngIf="currentRoute === '/films/watched'"
-            class="m-auto"
+            class="mx-auto mb-2 active-item"
             mat-raised-button
             color="warn" (click)="removeFromWatchedList()">
       Remove from watchedList

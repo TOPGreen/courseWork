@@ -1,10 +1,12 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {BehaviorSubject, combineLatest, Observable, Subject} from "rxjs";
 import {debounceTime, distinctUntilChanged, switchMap, takeUntil, tap} from "rxjs/operators";
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
+
+const searchControlName = "search"
 
 @Component({
   selector: 'app-films',
@@ -29,10 +31,10 @@ export class FilmsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      'search': new FormControl(null, [])
+      [searchControlName]: new FormControl(null, [])
     });
 
-    this.searchForm.controls['search'].valueChanges
+    this.searchForm.controls[searchControlName].valueChanges
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
@@ -48,13 +50,16 @@ export class FilmsComponent implements OnInit, OnDestroy {
         tap(() => this.isLoading = true),
         switchMap(([searchQuery, pageIndex]: [string, number]) => this.searchFilm(searchQuery, pageIndex)),
         tap(() => this.isLoading = false),
-      )
-    ;
+      );
   }
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  get searchControlName() {
+    return searchControlName;
   }
 
   get filmsCount(): number {
@@ -68,6 +73,5 @@ export class FilmsComponent implements OnInit, OnDestroy {
   searchFilm(searchString: string, pageIndex: number): Observable<any> {
     return this.filmsService.search(searchString, pageIndex + 1);
   }
-
 
 }

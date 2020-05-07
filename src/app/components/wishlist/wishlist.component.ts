@@ -3,12 +3,16 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {WishlistService} from "../../services/wishlist/wishlist.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
 
+const searchControlName = "search";
+const genreControlName = "genre";
+const runtimeControlName = "runtime";
+
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
-export class WishlistComponent implements OnInit, OnDestroy {
+export class WishlistComponent implements OnInit {
   public searchForm: FormGroup;
 
   constructor(private wishlistService: WishlistService) {
@@ -16,16 +20,24 @@ export class WishlistComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      'search': new FormControl(null, []),
-      'genre': new FormControl('Any', []),
-      'runtime': new FormControl('Any', []),
+      [searchControlName]: new FormControl('', []),
+      [genreControlName]: new FormControl('Any', []),
+      [runtimeControlName]: new FormControl('Any', []),
     });
 
     this.wishlistService.getWishList();
   }
 
-  ngOnDestroy(): void {
-    this.wishlistService.setFilms([]);
+  get searchControlName(){
+    return searchControlName;
+  }
+
+  get genreControlName(){
+    return genreControlName;
+  }
+
+  get runtimeControlName(){
+    return runtimeControlName;
   }
 
   get films(): FilmDTO[] {

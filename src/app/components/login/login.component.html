@@ -3,9 +3,9 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter Email</mat-label>
-        <input formControlName="email" matInput placeholder="Placeholder" >
-        <mat-error *ngIf="loginForm.get('email').hasError('email') &&
-        !loginForm.get('email').hasError('required')">
+        <input [formControlName]="emailControlName" matInput placeholder="Placeholder" >
+        <mat-error *ngIf="loginForm.get(emailControlName).hasError('email') &&
+        !loginForm.get(emailControlName).hasError('required')">
           Enter valid email address
         </mat-error>
       </mat-form-field>
@@ -13,8 +13,7 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter password</mat-label>
-        <input formControlName="password" matInput [type]="'password'" >
-<!--        <mat-hint>{{errorMessage}}</mat-hint>-->
+        <input [formControlName]="passwordControlName" matInput [type]="'password'" >
       </mat-form-field>
     </div>
 

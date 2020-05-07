@@ -3,9 +3,9 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Enter Email</mat-label>
-        <input formControlName="email" matInput placeholder="Placeholder">
-        <mat-error *ngIf="regForm.get('email').hasError('email') &&
-        !regForm.get('email').hasError('required')">
+        <input [formControlName]="emailControlName" matInput placeholder="Placeholder">
+        <mat-error *ngIf="regForm.get(emailControlName).hasError('email') &&
+        !regForm.get(emailControlName).hasError('required')">
           Enter existing email address
         </mat-error>
       </mat-form-field>
@@ -13,14 +13,14 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Enter password</mat-label>
-        <input formControlName="password" matInput [type]="'password'">
+        <input [formControlName]="passwordControlName" matInput [type]="'password'">
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Confirm password</mat-label>
-        <input formControlName="confirmedPassword" matInput [type]="'password'">
-        <mat-hint *ngIf="regForm.get('password').value !== regForm.get('confirmedPassword').value">
+        <input [formControlName]="confirmedPasswordControlName" matInput [type]="'password'">
+        <mat-hint *ngIf="regForm.get(passwordControlName).value !== regForm.get(confirmedPasswordControlName).value">
           Passwords must match
         </mat-hint>
       </mat-form-field>

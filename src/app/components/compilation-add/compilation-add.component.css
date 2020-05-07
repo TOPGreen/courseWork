@@ -1,12 +1,6 @@
-/*.form-container{*/
-/*  display: flex;*/
-/*  height: 50%*/
-/*}*/
-
 form{
   width: 100%;
   max-width: 400px;
-  min-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;

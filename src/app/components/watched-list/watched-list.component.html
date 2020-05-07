@@ -6,12 +6,12 @@
     <form [formGroup]="searchForm" class="d-flex flex-column align-items-center  justify-content-center flex-wrap pt-10">
       <mat-form-field [style.fontSize]="'18px'">
         <mat-label>Search film</mat-label>
-        <input formControlName="search" matInput>
+        <input [formControlName]="searchControlName" matInput>
       </mat-form-field>
       <div class="d-flex justify-content-start w-100 px-5">
         <mat-form-field class="mr-2 select">
           <mat-label>Genre</mat-label>
-          <select matNativeControl formControlName="genre">
+          <select matNativeControl [formControlName]="genreControlName">
             <option value="Any">Any</option>
             <option value="Horror">Horror</option>
             <option value="Comedy">Comedy</option>
@@ -29,7 +29,7 @@
         </mat-form-field>
         <mat-form-field class="mr-2 select">
           <mat-label>Runtime</mat-label>
-          <select matNativeControl formControlName="runtime">
+          <select matNativeControl [formControlName]="runtimeControlName">
             <option value="Any">Any</option>
             <option value="100"><100</option>
             <option value="150"><150</option>
@@ -39,8 +39,8 @@
       </div>
     </form>
     <div class="d-flex flex-wrap films">
-      <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get('search').value
-      : searchForm.get('genre').value: searchForm.get('runtime').value"
+      <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get(searchControlName).value
+      : searchForm.get(genreControlName).value: searchForm.get(runtimeControlName).value"
                      [film]="film"
                      (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
     </div>

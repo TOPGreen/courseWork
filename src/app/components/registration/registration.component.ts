@@ -4,6 +4,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
 
+const emailControlName = "email";
+const passwordControlName = "password"
+const confirmedPasswordControlName = "confirmedPassword"
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -18,10 +22,22 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.regForm = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required]),
-      confirmedPassword: new FormControl(null, [Validators.required])
+      [emailControlName]: new FormControl(null, [Validators.required, Validators.email]),
+      [passwordControlName]: new FormControl(null, [Validators.required]),
+      [confirmedPasswordControlName]: new FormControl(null, [Validators.required])
     })
+  }
+
+  get emailControlName(): string {
+    return emailControlName;
+  }
+
+  get passwordControlName(): string {
+    return passwordControlName;
+  }
+
+  get confirmedPasswordControlName(): string {
+    return confirmedPasswordControlName;
   }
 
   onSubmit(): void {
@@ -31,7 +47,6 @@ export class RegistrationComponent implements OnInit {
       this.errorMessage = "Incorrect input";
     }
   }
-
 
   tryRegister(value): void {
     this.authService.doRegister(value)
