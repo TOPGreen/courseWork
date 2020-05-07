@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      [emailControlName]: new FormControl("test@test.ru", [Validators.required, Validators.email]),
-      [passwordControlName]: new FormControl("test123", [Validators.required]),
+      [emailControlName]: new FormControl("", [Validators.required, Validators.email]),
+      [passwordControlName]: new FormControl("", [Validators.required]),
     })
   }
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.tryLogin(this.loginForm.value);
     } else {
-      this.errorMessage = "Некорректные данные";
+      this.errorMessage = "Form is invalid";
     }
   }
 

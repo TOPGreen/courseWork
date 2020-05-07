@@ -38,8 +38,6 @@ export class AuthService {
         this.changeAuthState();
         return res;
       })
-      .catch(err => err);
-
   }
 
   async doLogin(value): Promise<any> {
@@ -50,9 +48,8 @@ export class AuthService {
             this.changeAuthState();
             return res
           })
-          .catch(err => err)
       )
-      .catch(err => err);
+
   }
 
   async doLogout(): Promise<any> {

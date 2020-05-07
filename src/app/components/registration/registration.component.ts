@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
     if (this.regForm.valid && this.regForm.value.password === this.regForm.value.confirmedPassword) {
       this.tryRegister(this.regForm.value);
     } else {
-      this.errorMessage = "Incorrect input";
+      this.errorMessage = "Form is invalid";
     }
   }
 

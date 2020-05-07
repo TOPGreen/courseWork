@@ -1,13 +1,9 @@
-<div class="form-container">
+<div class="form-container mt-2">
   <form class="example-form" [formGroup]="regForm">
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Enter Email</mat-label>
         <input [formControlName]="emailControlName" matInput placeholder="Placeholder">
-        <mat-error *ngIf="regForm.get(emailControlName).hasError('email') &&
-        !regForm.get(emailControlName).hasError('required')">
-          Enter existing email address
-        </mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -17,16 +13,19 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="pb-2">
         <mat-label>Confirm password</mat-label>
         <input [formControlName]="confirmedPasswordControlName" matInput [type]="'password'">
-        <mat-hint *ngIf="regForm.get(passwordControlName).value !== regForm.get(confirmedPasswordControlName).value">
-          Passwords must match
+        <mat-hint>
+          <mat-error *ngIf="regForm.get(passwordControlName).value !== regForm.get(confirmedPasswordControlName).value">
+            Passwords must match
+          </mat-error>
+          <br>
+          <mat-error class="text-center">{{errorMessage}}</mat-error>
         </mat-hint>
       </mat-form-field>
     </p>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Registration</button>
-    <mat-error class="error">{{errorMessage}}</mat-error>
+    <button mat-raised-button class="mt-2" color="primary" (click)="onSubmit()">Registration</button>
   </form>
 </div>
 
