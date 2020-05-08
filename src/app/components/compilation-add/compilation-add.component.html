@@ -1,15 +1,16 @@
 <div class="d-flex flex-column align-items-center p-2">
-  <div class="close-drawer-container d-flex mb-2 w-100">
-    <button mat-flat-button color="warn" class="float-left" (click)="onClose()">
+  <div class="close-drawer-container mb-2 w-100">
+    <button mat-flat-button color="warn" (click)="onClose()" class="close-btn">
       <mat-icon>arrow_forward</mat-icon>
     </button>
+    <hr>
   </div>
   <h2>Add new compilation</h2>
   <form class="compilation-form" [formGroup]="compilationForm">
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter compilation's title</mat-label>
-        <input [formControlName]="titleControlName" matInput placeholder="Placeholder">
+        <input [formControlName]="titleControlName" matInput>
       </mat-form-field>
     </div>
     <div>
@@ -18,6 +19,6 @@
         <textarea [formControlName]="descriptionControlName" matInput type="text"></textarea>
       </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Add</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" class="active-item">Add</button>
   </form>
 </div>

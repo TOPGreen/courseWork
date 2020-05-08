@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {FilmsService} from "../../services/films/films.service";
 
+const NO_IMAGE = "assets/img/no-image.jpg"
+
 @Component({
   selector: 'app-film-card',
   templateUrl: './film-card.component.html',
@@ -16,7 +18,7 @@ export class FilmCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.film.Poster === "N/A") {
-      this.film.Poster="https://clotilda.ru/sites/default/files/styles/900x1200/public/default_images/no-image.jpg?itok=x1wQrkTb"
+      this.film.Poster = NO_IMAGE;
     }
   }
 

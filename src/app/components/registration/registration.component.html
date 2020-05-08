@@ -1,18 +1,21 @@
 <div class="form-container mt-2">
   <form class="example-form" [formGroup]="regForm">
-    <p>
+    <div class="form-header">
+      <h2 class="text-center">Registration</h2>
+    </div>
+    <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter Email</mat-label>
-        <input [formControlName]="emailControlName" matInput placeholder="Placeholder">
+        <input [formControlName]="emailControlName" matInput >
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter password</mat-label>
         <input [formControlName]="passwordControlName" matInput [type]="'password'">
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div>
       <mat-form-field appearance="outline" class="pb-2">
         <mat-label>Confirm password</mat-label>
         <input [formControlName]="confirmedPasswordControlName" matInput [type]="'password'">
@@ -24,8 +27,9 @@
           <mat-error class="text-center">{{errorMessage}}</mat-error>
         </mat-hint>
       </mat-form-field>
-    </p>
-    <button mat-raised-button class="mt-2" color="primary" (click)="onSubmit()">Registration</button>
+    </div>
+    <button mat-raised-button class="mt-2" color="primary" (click)="onSubmit()" class="active-item">Registration
+    </button>
   </form>
 </div>
 

@@ -1,11 +1,17 @@
 <div class="flip-card-back d-flex flex-column justify-content-center p-2">
   <div class="close-drawer-container mb-2">
-    <button mat-flat-button color="warn" class="float-right" (click)="onClose()">
+    <button mat-flat-button color="warn" class="float-right close-btn" (click)="onClose()">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <span class="card-title h5 text-center font-weight-bold">{{currentFilm.Title}}</span>
+    <div>
+      <img src="assets/img/logo.png" class="logo">
+    </div>
+    <hr>
   </div>
   <div class="text-left">
+    <div class="text-center">
+      <h2 class="card-title">{{currentFilm.Title}}</h2>
+    </div>
     <p class="card-text"><b>Genre :</b>{{currentFilm.Genre}}</p>
     <p><b>Director :</b> {{currentFilm.Director}}</p>
     <p><b>Actors :</b> {{currentFilm.Actors}}</p>
@@ -31,7 +37,8 @@
       Add to selected compilation
     </button>
   </div>
-  <div class="mb-2 d-flex justify-content-start flex-wrap" *ngIf="currentRoute==='/films/compilations'">
+  <div class="mb-2 d-flex justify-content-start flex-wrap align-items-center"
+       *ngIf="currentRoute==='/films/compilations'">
     <p class="mx-auto mb-2 active-item"><b>Compilation : </b>{{currentCompilationTitle}}</p>
     <button mat-raised-button
             color="warn" (click)="removeFromCompilation()"
@@ -47,13 +54,15 @@
       Add to wishlist
     </button>
     <button *ngIf="currentRoute !== '/films/watched'"
-            class="mx-auto mb-2 active-item" mat-raised-button
+            class="mx-auto mb-2 active-item"
+            mat-raised-button
             color="primary"
             (click)="addToWatchedList()">
       Add to watchedList
     </button>
     <button *ngIf="currentRoute === '/films/wish'"
-            class="mx-auto mb-2 active-item" mat-raised-button
+            class="mx-auto mb-2 active-item"
+            mat-raised-button
             color="warn"
             (click)="removeFromWishList()">
       Remove from wishList

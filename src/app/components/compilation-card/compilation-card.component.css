@@ -48,26 +48,22 @@ img {
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
   border-radius: 15px;
-  color: #6737b8;
-  border: 5px solid #6737b8;
+  color: #512da8;
+  border: 5px solid #512da8;
   /*color: black;*/
 }
 
 /* Style the back side */
 .flip-card-back {
   border-radius: 15px;
-  color: #6737b8;
-  border: 5px solid #6737b8;
+  color: #512da8;
+  border: 5px solid #512da8;
   transform: rotateY(180deg);
 }
 
 .remove-btn{
-  /*color: red;*/
   font-size: 16px;
 }
 
-.remove-btn:hover{
-  color: red;
-}
 
 

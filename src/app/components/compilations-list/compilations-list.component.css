@@ -33,13 +33,13 @@ mat-sidenav-content {
   background-color: white;
   border-radius: 15px;
   font-size: 20px;
-  color: #6737b8;
-  border: 5px solid #6737b8;
+  color: #512da8;
+  border: 5px solid #512da8;
   margin-top: 5px;
 }
 
 .add-btn:hover{
   color: white;
-  background-color: #6737b8;
+  background-color: #512da8;
 }
 

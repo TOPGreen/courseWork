@@ -1,24 +1,23 @@
 <div class="form-container">
   <form class="example-form" [formGroup]="loginForm">
+    <div class="form-header">
+      <h2 class="text-center">Log in</h2>
+    </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter Email</mat-label>
-        <input [formControlName]="emailControlName" matInput placeholder="Placeholder" >
-        <mat-error *ngIf="loginForm.get(emailControlName).hasError('email') &&
-        !loginForm.get(emailControlName).hasError('required')">
-          Enter valid email address
-        </mat-error>
+        <input [formControlName]="emailControlName" matInput>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline" class="pb-2">
         <mat-label>Enter password</mat-label>
-        <input [formControlName]="passwordControlName" matInput [type]="'password'" >
+        <input [formControlName]="passwordControlName" matInput [type]="'password'">
         <mat-hint>
           <mat-error class="text-center">{{errorMessage}}</mat-error>
         </mat-hint>
       </mat-form-field>
     </div>
-    <button mat-raised-button class="mt-3" color="primary" (click)="onSubmit()">Log in</button>
+    <button mat-raised-button class="mt-3" color="primary" (click)="onSubmit()" class="active-item">Log in</button>
   </form>
 </div>

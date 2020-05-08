@@ -1,4 +1,5 @@
-<nav mat-tab-nav-bar backgroundColor="primary">
+<nav mat-tab-nav-bar backgroundColor="accent">
+  <img src="assets/img/logo.png" class="logo">
   <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'login'" routerLinkActive="active"
      [routerLinkActiveOptions]="{ exact: true }" >Log in</a>
   <a *ngIf="!authService.authStatus" mat-tab-link [routerLink]="'/registration'" routerLinkActive="active"

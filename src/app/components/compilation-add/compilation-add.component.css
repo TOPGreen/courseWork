@@ -1,4 +1,4 @@
-form{
+form {
   width: 100%;
   max-width: 400px;
   display: flex;
@@ -8,9 +8,14 @@ form{
   padding: 10px;
 }
 
-mat-form-field{
+mat-form-field {
   width: 100%;
 }
-button{
+
+button {
   margin: 5px;
+}
+
+.close-btn:hover {
+  transform: scale(1.05);
 }
