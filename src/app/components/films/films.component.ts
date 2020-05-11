@@ -1,8 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {BehaviorSubject, combineLatest, Observable, Subject} from "rxjs";
-import {debounceTime, distinctUntilChanged, switchMap, takeUntil, tap} from "rxjs/operators";
+import {debounceTime, delay, distinctUntilChanged, filter, finalize, switchMap, takeUntil, tap} from "rxjs/operators";
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
@@ -12,47 +12,40 @@ const searchControlName = "search"
   selector: 'app-films',
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsComponent implements OnInit, OnDestroy {
-
-  @ViewChild("mat-paginator")
-  paginator: MatPaginator;
-
-  public searchForm: FormGroup;
-  public films$: Observable<FilmDTO[]>
-  public isLoading = false;
-  public pageIndex$ = new BehaviorSubject<number>(0);
-
   private searchQuery$ = new BehaviorSubject<string>("");
   private onDestroy$ = new Subject();
 
+  public searchForm: FormGroup;
+  public isLoading = false;
+  public films$: Observable<FilmDTO[]>
+  public pageIndex$ = new BehaviorSubject<number>(0);
 
-  constructor(private filmsService: FilmsService) {
+  constructor(private filmsService: FilmsService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      [searchControlName]: new FormControl(null, [])
+      [searchControlName]: new FormControl("", [])
     });
 
     this.searchForm.controls[searchControlName].valueChanges
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        takeUntil(this.onDestroy$)
+        takeUntil(this.onDestroy$),
       ).subscribe(value => {
       this.pageIndex$.next(this.filmsService.getLastSearchParam.page);
       this.filmsService.setLastSearchParam({search: "", page: 0})
       this.searchQuery$.next(value);
     });
 
-    if (this.filmsService.getLastSearchParam.search) {
-      this.searchForm.controls[searchControlName].setValue(this.filmsService.getLastSearchParam.search);
-    }
+    this.searchForm.controls[searchControlName].setValue(this.filmsService.getLastSearchParam.search);
 
     this.films$ = combineLatest(this.searchQuery$, this.pageIndex$)
       .pipe(
+        delay(0),
         tap(() => {
           this.isLoading = true;
         }),
@@ -60,9 +53,7 @@ export class FilmsComponent implements OnInit, OnDestroy {
         tap(() => {
           this.isLoading = false;
         })
-      )
-    ;
-
+      );
   }
 
   ngOnDestroy(): void {
@@ -81,6 +72,10 @@ export class FilmsComponent implements OnInit, OnDestroy {
 
   get errorMessage(): string {
     return this.filmsService.getErrorMessage;
+  }
+
+  get searchValue(): string {
+    return this.searchForm.get(searchControlName).value;
   }
 
   onPageChange({pageIndex}: PageEvent): void {

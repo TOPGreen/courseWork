@@ -23,5 +23,4 @@ export class CompilationCardComponent implements OnInit {
     event.stopPropagation();
     this.onDelete.emit()
   }
-
 }

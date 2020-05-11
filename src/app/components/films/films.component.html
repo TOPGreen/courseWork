@@ -16,16 +16,16 @@
     </mat-paginator>
     <div class="d-flex justify-content-center">
       <div class="d-flex flex-wrap justify-content-center justify-content-sm-start"
-           *ngIf="!isLoading && (films$ | async) as films;">
+           *ngIf="!isLoading && (films$ | async) as films">
         <app-film-card *ngFor="let film of films" [film]="film"
                        (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
       </div>
     </div>
     <div *ngIf="isLoading" class="d-flex justify-content-center">
       <div class="d-flex flex-column align-items-center">
-        <h2 *ngIf="!searchForm.get(searchControlName).value">Enter a string in the search</h2>
-        <h2 *ngIf="errorMessage && searchForm.get(searchControlName).value">{{errorMessage}}</h2>
-        <mat-progress-spinner *ngIf="searchForm.get(searchControlName).value && !errorMessage" mode="indeterminate">
+        <h2 *ngIf="!searchValue">Enter a string in the search</h2>
+        <h2 *ngIf="searchValue">{{errorMessage}}</h2>
+        <mat-progress-spinner *ngIf="searchValue && !errorMessage" mode="indeterminate">
         </mat-progress-spinner>
       </div>
     </div>

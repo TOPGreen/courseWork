@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CompilationsService} from "../../services/compilations/compilations.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {CompilationDTO} from "../../interfaces/CompilationDTO";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-compilations-list',
@@ -9,6 +10,10 @@ import {CompilationDTO} from "../../interfaces/CompilationDTO";
   styleUrls: ['./compilations-list.component.css']
 })
 export class CompilationsListComponent implements OnInit {
+
+  @ViewChild("drawerRight",)
+  drawerRight: MatSidenav;
+
   constructor(private compilationsService: CompilationsService) {
   }
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CompilationsService} from "../../services/compilations/compilations.service";
 
@@ -36,12 +36,11 @@ export class CompilationAddComponent implements OnInit {
 
   onSubmit(): void {
     if (this.compilationForm.valid) {
-      this.compilationsService.addCompilation(Object.assign({films: []}, this.compilationForm.value));
+        this.compilationsService.addCompilation(Object.assign({films: []}, this.compilationForm.value));
     }
   }
 
   onClose(): void {
     this.close.emit();
   }
-
 }

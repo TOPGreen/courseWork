@@ -14,6 +14,7 @@ export class CompilationsService {
   private currentCompilationIndex: number;
   private compilationsCollection: string = 'compilations';
   private doc;
+  private isEditMode = false;
 
   constructor(private firebaseService: FirebaseService,
               private authService: AuthService) {
@@ -37,6 +38,17 @@ export class CompilationsService {
     return this.currentCompilation ? this.currentCompilation.title : "";
   }
 
+  get getCurrentCompilationDescription(): string {
+    return this.currentCompilation ? this.currentCompilation.description : "";
+  }
+
+  get isEditModeActive() {
+    return this.isEditMode;
+  }
+
+  setEditMode(mode: boolean): void {
+    this.isEditMode = mode;
+  }
 
   setCurrentCompilation(index: number): void {
     this.currentCompilationIndex = index;
@@ -65,6 +77,10 @@ export class CompilationsService {
       }, this.doc);
   }
 
+  editComiplation({title, description}): void {
+    this.currentCompilation.title = title;
+    this.currentCompilation.description = description;
+  }
 
   addFilm(compilation: string, film: FilmDTO): void {
     this.compilations.forEach(el => {

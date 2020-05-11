@@ -8,7 +8,12 @@
     </div>
     <div class="flip-card-back flex-column d-flex justify-content-center">
       <div class="w-100">
-        <span class="remove-btn float-right pr-2 font-weight-bold" (click)="deleteCompilation($event)">x</span>
+        <span class="float-right pr-1 compilations-btn" (click)="deleteCompilation($event)">
+          <mat-icon>delete</mat-icon>
+        </span>
+        <span class="float-right pl-1 compilations-btn">
+          <mat-icon>edit</mat-icon>
+        </span>
       </div>
       <div class="m-auto text-break">
         <p class="font-weight-bold">
