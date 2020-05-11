@@ -3,7 +3,8 @@
     <app-film-info (close)="drawer.close()"></app-film-info>
   </mat-sidenav>
   <mat-sidenav-content (click)="drawer.close()">
-    <form [formGroup]="searchForm" class="d-flex flex-column align-items-center  justify-content-center flex-wrap pt-10">
+    <form [formGroup]="searchForm"
+          class="d-flex flex-column align-items-center  justify-content-center flex-wrap pt-10">
       <mat-form-field [style.fontSize]="'18px'">
         <mat-label>Search film</mat-label>
         <input [formControlName]="searchControlName" matInput>
@@ -24,7 +25,7 @@
             <option value="Animated film">Animated film</option>
             <option value="Documentary">Documentary</option>
             <option value="Detective ">Detective</option>
-            <option value="Biopic ">Biopic </option>
+            <option value="Biopic ">Biopic</option>
           </select>
         </mat-form-field>
         <mat-form-field class="mr-2 select">
@@ -38,11 +39,13 @@
         </mat-form-field>
       </div>
     </form>
-    <div class="d-flex flex-wrap films">
-      <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get(searchControlName).value
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
+        <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get(searchControlName).value
       : searchForm.get(genreControlName).value: searchForm.get(runtimeControlName).value"
-                     [film]="film"
-                     (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
+                       [film]="film"
+                       (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

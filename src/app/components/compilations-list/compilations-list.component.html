@@ -19,10 +19,11 @@
                             (onDelete)="deleteCompilation(index)">
       </app-compilation-card>
     </div>
-
-    <div class="d-flex flex-wrap">
-      <app-film-card *ngFor="let film of films" [film]="film"
-                     (click)="$event.stopPropagation(); drawerLeft.open()"></app-film-card>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-wrap justify-content-center justify-content-sm-start">
+        <app-film-card *ngFor="let film of films" [film]="film"
+                       (click)="$event.stopPropagation(); drawerLeft.open()"></app-film-card>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

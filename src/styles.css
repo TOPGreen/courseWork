@@ -9,6 +9,10 @@ button.active-item:hover {
   opacity: 0.9;
 }
 
+.close-btn:hover{
+  transform: scale(1.05);
+}
+
 .form-header{
   color: #512da8;
 }

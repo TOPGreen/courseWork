@@ -1,1 +1,1 @@
-export const OMDB_URL = `http://www.omdbapi.com/?type=movie&apikey=c356589f`;
+export const OMDB_URL = `https://www.omdbapi.com/?type=movie&apikey=c356589f`;

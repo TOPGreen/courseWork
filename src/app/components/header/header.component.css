@@ -10,3 +10,7 @@ a{
   margin: auto 0 auto 20px;
   height: 30px;
 }
+
+nav{
+  z-index: 0;
+}

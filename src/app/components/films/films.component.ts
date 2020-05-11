@@ -15,16 +15,18 @@ const searchControlName = "search"
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsComponent implements OnInit, OnDestroy {
+
+  @ViewChild("mat-paginator")
+  paginator: MatPaginator;
+
   public searchForm: FormGroup;
   public films$: Observable<FilmDTO[]>
-
-  private pageIndex$ = new BehaviorSubject<number>(0);
-  private searchQuery$ = new BehaviorSubject<string>("");
   public isLoading = false;
+  public pageIndex$ = new BehaviorSubject<number>(0);
+
+  private searchQuery$ = new BehaviorSubject<string>("");
   private onDestroy$ = new Subject();
 
-  @ViewChild(MatPaginator)
-  paginator: MatPaginator;
 
   constructor(private filmsService: FilmsService) {
   }
@@ -40,22 +42,33 @@ export class FilmsComponent implements OnInit, OnDestroy {
         distinctUntilChanged(),
         takeUntil(this.onDestroy$)
       ).subscribe(value => {
-      this.paginator.pageIndex = 0;
-      this.pageIndex$.next(0);
+      this.pageIndex$.next(this.filmsService.getLastSearchParam.page);
+      this.filmsService.setLastSearchParam({search: "", page: 0})
       this.searchQuery$.next(value);
     });
 
+    if (this.filmsService.getLastSearchParam.search) {
+      this.searchForm.controls[searchControlName].setValue(this.filmsService.getLastSearchParam.search);
+    }
+
     this.films$ = combineLatest(this.searchQuery$, this.pageIndex$)
       .pipe(
-        tap(() => this.isLoading = true),
+        tap(() => {
+          this.isLoading = true;
+        }),
         switchMap(([searchQuery, pageIndex]: [string, number]) => this.searchFilm(searchQuery, pageIndex)),
-        tap(() => this.isLoading = false),
-      );
+        tap(() => {
+          this.isLoading = false;
+        })
+      )
+    ;
+
   }
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+    this.filmsService.setLastSearchParam({search: this.searchQuery$.value, page: this.pageIndex$.value});
   }
 
   get searchControlName() {
@@ -66,6 +79,10 @@ export class FilmsComponent implements OnInit, OnDestroy {
     return this.filmsService.getFilmsCount;
   };
 
+  get errorMessage(): string {
+    return this.filmsService.getErrorMessage;
+  }
+
   onPageChange({pageIndex}: PageEvent): void {
     this.pageIndex$.next(pageIndex);
   }
@@ -73,5 +90,4 @@ export class FilmsComponent implements OnInit, OnDestroy {
   searchFilm(searchString: string, pageIndex: number): Observable<any> {
     return this.filmsService.search(searchString, pageIndex + 1);
   }
-
 }

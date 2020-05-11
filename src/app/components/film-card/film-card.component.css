@@ -6,7 +6,7 @@ img {
   object-fit: cover;
 }
 
-.flip-card {
+.film-card {
   padding: 0 5px 5px 5px;
   margin-top: 10px;
   background-color: transparent;
@@ -18,7 +18,7 @@ img {
 }
 
 /* This container is needed to position the front and back side */
-.flip-card-inner {
+.film-card-inner {
   position: relative;
   cursor: pointer;
   width: 100%;
@@ -29,14 +29,13 @@ img {
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+.film-card:hover .film-card-inner {
   /*transform: rotateY(180deg);*/
   transform: scale(1.05);
 }
 
 /* Position the front and back side */
-.flip-card-front,
-.flip-card-back {
+.film-card-front{
   position: absolute;
   width: 100%;
   height: 100%;
@@ -46,18 +45,10 @@ img {
 }
 
 /* Style the front side (fallback if image is missing) */
-.flip-card-front {
+.film-card-front {
   background-color: #bbb;
   border-radius: 15px;
   color: black;
-}
-
-/* Style the back side */
-.flip-card-back {
-  border-radius: 15px;
-  color: #3d50b6;
-  border: 5px solid #3d50b6;
-  transform: rotateY(180deg);
 }
 
 

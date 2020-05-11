@@ -38,10 +38,12 @@
         </mat-form-field>
       </div>
     </form>
-    <div class="d-flex flex-wrap films">
-      <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get(searchControlName).value
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
+        <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get(searchControlName).value
       : searchForm.get(genreControlName).value : searchForm.get(runtimeControlName).value" [film]="film"
-                     (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
+                       (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

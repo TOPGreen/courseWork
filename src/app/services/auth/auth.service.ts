@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
-// import {UserDTO} from "../../interfaces/UserDTO";
-// import * as firebase from "firebase";
-import {auth, User} from "firebase";
+import {auth, User} from "firebase/app";
 import {Observable} from "rxjs";
 import {take} from "rxjs/operators";
 
