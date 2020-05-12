@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WishlistService} from "../../services/wishlist/wishlist.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
+import {genres} from 'src/app/consts/genres';
+import {runtimeList} from "../../consts/runtimeList";
 
 const searchControlName = "search";
 const genreControlName = "genre";
@@ -28,19 +30,27 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.getWishList();
   }
 
-  get searchControlName(){
+  get searchControlName() {
     return searchControlName;
   }
 
-  get genreControlName(){
+  get genreControlName() {
     return genreControlName;
   }
 
-  get runtimeControlName(){
+  get runtimeControlName() {
     return runtimeControlName;
   }
 
   get films(): FilmDTO[] {
     return this.wishlistService.getFilms;
+  }
+
+  get genres() {
+    return genres.sort();
+  }
+
+  get runtimeList() {
+    return runtimeList.sort();
   }
 }

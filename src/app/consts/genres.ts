@@ -1,0 +1,17 @@
+export const genres: string[] = [
+  "Any",
+  "Horror",
+  "Comedy",
+  "Thriller",
+  "Drama",
+  "Sci-fi",
+  "Action",
+  "Adventure",
+  "Fantasy",
+  "Animated film",
+  "Documentary",
+  "Detective",
+  "Biography",
+  "Crime",
+  "Mystery",
+]

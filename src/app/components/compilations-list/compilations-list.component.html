@@ -9,7 +9,7 @@
   </mat-sidenav>
   <mat-sidenav-content class="d-flex justify-content-center flex-column overflow-hidden"
                        (click)="drawerLeft.close(); drawerRight.close()">
-    <div class="d-inline-flex compilations-container align-items-center">
+    <div class="d-inline-flex compilations-container">
       <button mat-flat-button class="add-btn" color="primary" (click)="$event.stopPropagation(); drawerRight.open()">
         Add new compilation
       </button>
