@@ -17,7 +17,15 @@ form{
 mat-form-field{
   width: 100%;
 }
+
 button{
   margin: 5px 0;
 }
 
+mat-hint {
+  color: red;
+}
+
+.errors{
+  font-size: 12px;
+}

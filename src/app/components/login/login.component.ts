@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.tryLogin(this.loginForm.value);
     } else {
-      this.errorMessage = "Form is invalid";
+      this.errorMessage = "All fields are required";
     }
   }
 

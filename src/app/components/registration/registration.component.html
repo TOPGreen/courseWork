@@ -6,7 +6,7 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Enter Email</mat-label>
-        <input [formControlName]="emailControlName" matInput >
+        <input [formControlName]="emailControlName" matInput>
       </mat-form-field>
     </div>
     <div>
@@ -19,17 +19,17 @@
       <mat-form-field appearance="outline" class="pb-2">
         <mat-label>Confirm password</mat-label>
         <input [formControlName]="confirmedPasswordControlName" matInput [type]="'password'">
-        <mat-hint>
-          <mat-error *ngIf="regForm.get(passwordControlName).value !== regForm.get(confirmedPasswordControlName).value">
+        <mat-hint class="errors">
+          <p class="m-0" *ngIf="regForm.get(passwordControlName).value !== regForm.get(confirmedPasswordControlName).value">
             Passwords must match
-          </mat-error>
-          <br>
-          <mat-error class="text-center">{{errorMessage}}</mat-error>
+          </p>
+          <p>{{errorMessage}}</p>
         </mat-hint>
       </mat-form-field>
     </div>
-    <button mat-raised-button class="mt-2" color="primary" (click)="onSubmit()" class="active-item">Registration
-    </button>
+      <button mat-raised-button class="mt-2" color="primary" (click)="onSubmit()" class="active-item">
+        Registration
+      </button>
   </form>
 </div>
 

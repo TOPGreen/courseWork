@@ -16,6 +16,8 @@ export class CompilationAddComponent implements OnInit {
   @Output()
   close = new EventEmitter<void>();
 
+  public errorMessage = "";
+
   constructor(private compilationsService: CompilationsService) {
   }
 
@@ -37,6 +39,9 @@ export class CompilationAddComponent implements OnInit {
   onSubmit(): void {
     if (this.compilationForm.valid) {
         this.compilationsService.addCompilation(Object.assign({films: []}, this.compilationForm.value));
+        this.errorMessage = "";
+    } else {
+    this.errorMessage ="All field are required"
     }
   }
 

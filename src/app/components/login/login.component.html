@@ -13,8 +13,8 @@
       <mat-form-field appearance="outline" class="pb-2">
         <mat-label>Enter password</mat-label>
         <input [formControlName]="passwordControlName" matInput [type]="'password'">
-        <mat-hint>
-          <mat-error class="text-center">{{errorMessage}}</mat-error>
+        <mat-hint class="errors">
+          <span class="text-center">{{errorMessage}}</span>
         </mat-hint>
       </mat-form-field>
     </div>

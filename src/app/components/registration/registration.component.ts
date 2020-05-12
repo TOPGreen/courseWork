@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.regForm = new FormGroup({
-      [emailControlName]: new FormControl(null, [Validators.required, Validators.email]),
+      [emailControlName]: new FormControl(null, [Validators.required]),
       [passwordControlName]: new FormControl(null, [Validators.required]),
       [confirmedPasswordControlName]: new FormControl(null, [Validators.required])
     })
@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
     if (this.regForm.valid && this.regForm.value.password === this.regForm.value.confirmedPassword) {
       this.tryRegister(this.regForm.value);
     } else {
-      this.errorMessage = "Form is invalid";
+      this.errorMessage = "All fields are required";
     }
   }
 
@@ -55,7 +55,6 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['films']);
       }, err => {
         this.errorMessage = err.message;
-        console.log(err);
       })
   }
 }
