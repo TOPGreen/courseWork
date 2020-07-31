@@ -8,7 +8,10 @@ import {run} from "tslint/lib/runner";
 })
 export class FilmsSearchPipe implements PipeTransform {
 
-  transform(films: FilmDTO[], searchString: string, genre: string, runtime: string, ...args: unknown[]): unknown {
+  transform(films: FilmDTO[], searchString: string, genre: string, runtime: string, dateAdded: string, ...args: unknown[]): unknown {
+    if (dateAdded === "Newer") {
+      films.reverse();
+    }
     return films.filter(film => {
       if (searchString && !film.Title.toLowerCase().includes(searchString.toLowerCase())) {
         return false

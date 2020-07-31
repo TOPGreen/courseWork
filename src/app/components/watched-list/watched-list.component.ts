@@ -9,6 +9,7 @@ import {NgAnimateScrollService} from "ng-animate-scroll";
 const searchControlName = "search";
 const genreControlName = "genre";
 const runtimeControlName = "runtime";
+const dateAddedControlName = "dateAdded";
 
 @Component({
     selector: 'app-wached-list',
@@ -26,6 +27,7 @@ export class WatchedListComponent implements OnInit {
             [searchControlName]: new FormControl('', []),
             [genreControlName]: new FormControl('Any', []),
             [runtimeControlName]: new FormControl('Any', []),
+            [dateAddedControlName]: new FormControl('Newer', []),
         });
 
         this.watchedListService.getWatchedList();
@@ -63,6 +65,10 @@ export class WatchedListComponent implements OnInit {
 
     get runtimeList() {
         return runtimeList.sort();
+    }
+
+    get dateAddedControlName(){
+        return dateAddedControlName;
     }
 
     scrollToTop() {

@@ -9,6 +9,7 @@ import {NgAnimateScrollService} from "ng-animate-scroll";
 const searchControlName = "search";
 const genreControlName = "genre";
 const runtimeControlName = "runtime";
+const dateAddedControlName = "dateAdded";
 
 @Component({
   selector: 'app-wishlist',
@@ -26,6 +27,7 @@ export class WishlistComponent implements OnInit {
       [searchControlName]: new FormControl('', []),
       [genreControlName]: new FormControl('Any', []),
       [runtimeControlName]: new FormControl('Any', []),
+      [dateAddedControlName]: new FormControl('Newer', []),
     });
 
     this.wishlistService.getWishList();
@@ -51,6 +53,10 @@ export class WishlistComponent implements OnInit {
 
   get runtimeControlName() {
     return runtimeControlName;
+  }
+
+  get dateAddedControlName(){
+    return dateAddedControlName;
   }
 
   get films(): FilmDTO[] {
