@@ -27,11 +27,17 @@
     </form>
     <div class="d-flex justify-content-center">
       <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
-        <app-film-card *ngFor="let film of films | filmsSearch : searchForm.get(searchControlName).value
+        <app-film-card *ngFor="let film of films.reverse() | filmsSearch : searchForm.get(searchControlName).value
       : searchForm.get(genreControlName).value: searchForm.get(runtimeControlName).value"
                        [film]="film"
                        (click)="$event.stopPropagation(); drawer.open()"></app-film-card>
       </div>
     </div>
+    <button mat-fab
+            class="scroll-btn invisible"
+            color="primary"
+            (click)="scrollToTop()">
+      <mat-icon>expand_less</mat-icon>
+    </button>
   </mat-sidenav-content>
 </mat-sidenav-container>

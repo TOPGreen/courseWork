@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {WishlistService} from "../../services/wishlist/wishlist.service";
 import {WatchedListService} from "../../services/wathedList/watched-list.service";
 import {CompilationsService} from "../../services/compilations/compilations.service";
 import {FilmsService} from "../../services/films/films.service";
+import {NgAnimateScrollService} from "ng-animate-scroll";
 
 @Component({
   selector: 'app-main',

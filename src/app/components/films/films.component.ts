@@ -1,10 +1,17 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {FilmsService} from "../../services/films/films.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {BehaviorSubject, combineLatest, Observable, Subject} from "rxjs";
-import {debounceTime, delay, distinctUntilChanged, filter, finalize, switchMap, takeUntil, tap} from "rxjs/operators";
+import {debounceTime, delay, distinctUntilChanged, switchMap, takeUntil, tap} from "rxjs/operators";
 import {FilmDTO} from "../../interfaces/filmDTO";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {PageEvent} from "@angular/material/paginator";
+import {NgAnimateScrollService} from 'ng-animate-scroll';
 
 const searchControlName = "search"
 
@@ -16,11 +23,13 @@ const searchControlName = "search"
 export class FilmsComponent implements OnInit, OnDestroy {
   private searchQuery$ = new BehaviorSubject<string>("");
   private onDestroy$ = new Subject();
+  private scrollBtn = document.querySelector(".scroll-btn");
 
   public searchForm: FormGroup;
   public isLoading = false;
   public films$: Observable<FilmDTO[]>
   public pageIndex$ = new BehaviorSubject<number>(0);
+
 
   constructor(private filmsService: FilmsService, private cdr: ChangeDetectorRef) {
   }

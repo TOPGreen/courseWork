@@ -32,3 +32,10 @@ mat-sidenav-content {
   width: 10%;
   min-width: 120px;
 }
+
+.scroll-btn {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  outline: none !important;
+}

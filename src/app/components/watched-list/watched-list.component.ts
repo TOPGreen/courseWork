@@ -1,58 +1,73 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WatchedListService} from "../../services/wathedList/watched-list.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {genres} from "../../consts/genres";
 import {runtimeList} from "../../consts/runtimeList";
+import {NgAnimateScrollService} from "ng-animate-scroll";
 
 const searchControlName = "search";
 const genreControlName = "genre";
 const runtimeControlName = "runtime";
 
 @Component({
-  selector: 'app-wached-list',
-  templateUrl: './watched-list.component.html',
-  styleUrls: ['./watched-list.component.css']
+    selector: 'app-wached-list',
+    templateUrl: './watched-list.component.html',
+    styleUrls: ['./watched-list.component.css']
 })
 export class WatchedListComponent implements OnInit {
-  public searchForm: FormGroup;
+    public searchForm: FormGroup;
 
-  constructor(private watchedListService: WatchedListService) {
-  }
+    constructor(private watchedListService: WatchedListService, private animateScrollService: NgAnimateScrollService) {
+    }
 
-  ngOnInit(): void {
-    this.searchForm = new FormGroup({
-      [searchControlName]: new FormControl('', []),
-      [genreControlName]: new FormControl('Any', []),
-      [runtimeControlName]: new FormControl('Any', []),
-    });
+    ngOnInit(): void {
+        this.searchForm = new FormGroup({
+            [searchControlName]: new FormControl('', []),
+            [genreControlName]: new FormControl('Any', []),
+            [runtimeControlName]: new FormControl('Any', []),
+        });
 
-    this.watchedListService.getWatchedList();
-  }
+        this.watchedListService.getWatchedList();
+    }
 
-  get searchControlName() {
-    return searchControlName;
-  }
+    @HostListener("window:scroll", [])
+    onWindowScroll() {
+        let button = window.document.querySelector(".scroll-btn");
+        if (window.pageYOffset > 400) {
+            button.classList.remove("invisible");
+        } else if (!button.classList.contains("invisible")) {
+            button.classList.add("invisible");
+        }
+    }
 
-  get genreControlName() {
-    return genreControlName;
-  }
+    get searchControlName() {
+        return searchControlName;
+    }
 
-  get runtimeControlName() {
-    return runtimeControlName;
-  }
+    get genreControlName() {
+        return genreControlName;
+    }
 
-  get films(): FilmDTO[] {
-    return this.watchedListService.getFilms;
-  }
+    get runtimeControlName() {
+        return runtimeControlName;
+    }
 
-  get genres() {
-    return genres.sort();
-  }
+    get films(): FilmDTO[] {
+        return this.watchedListService.getFilms;
+    }
 
-  get runtimeList() {
-    return runtimeList.sort();
-  }
+    get genres() {
+        return genres.sort();
+    }
+
+    get runtimeList() {
+        return runtimeList.sort();
+    }
+
+    scrollToTop() {
+        this.animateScrollService.scrollToElement('header', 750)
+    }
 }
 
 

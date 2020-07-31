@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {WishlistService} from "../../services/wishlist/wishlist.service";
 import {FilmDTO} from "../../interfaces/filmDTO";
 import {genres} from 'src/app/consts/genres';
 import {runtimeList} from "../../consts/runtimeList";
+import {NgAnimateScrollService} from "ng-animate-scroll";
 
 const searchControlName = "search";
 const genreControlName = "genre";
@@ -17,7 +18,7 @@ const runtimeControlName = "runtime";
 export class WishlistComponent implements OnInit {
   public searchForm: FormGroup;
 
-  constructor(private wishlistService: WishlistService) {
+  constructor(private wishlistService: WishlistService,private animateScrollService: NgAnimateScrollService) {
   }
 
   ngOnInit(): void {
@@ -28,6 +29,16 @@ export class WishlistComponent implements OnInit {
     });
 
     this.wishlistService.getWishList();
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    let button = window.document.querySelector(".scroll-btn");
+    if (window.pageYOffset > 400) {
+      button.classList.remove("invisible");
+    } else if (!button.classList.contains("invisible")) {
+      button.classList.add("invisible");
+    }
   }
 
   get searchControlName() {
@@ -52,5 +63,9 @@ export class WishlistComponent implements OnInit {
 
   get runtimeList() {
     return runtimeList.sort();
+  }
+
+  scrollToTop() {
+    this.animateScrollService.scrollToElement('header', 750)
   }
 }

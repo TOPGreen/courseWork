@@ -1,7 +1,13 @@
 .active-item {
   width: 200px;
 }
-.logo{
+
+.logo {
   height: 35px;
+}
+
+
+
+.scroll-btn:focus {
 }
 
